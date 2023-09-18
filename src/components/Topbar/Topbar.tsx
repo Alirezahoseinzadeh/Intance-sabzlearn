@@ -13,6 +13,8 @@ import {
   Menu,
   MenuItem,
   Paper,
+  Drawer,
+  TextField,
 } from "@mui/material";
 import React, { useState } from "react";
 import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
@@ -21,6 +23,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ListIcon from "@mui/icons-material/List";
 
 export default function Topbar() {
+  const [openDrwer, setOpendrawer] = useState(false);
   const [open, setOpen] = useState<boolean>(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
@@ -39,7 +42,6 @@ export default function Topbar() {
 
     "&:hover": {
       color: "#33ff33",
-      //   backgroundColor: " #7C8685",
       padding: "2px 10px",
       borderRadius: "10px",
       borer: "none",
@@ -50,15 +52,42 @@ export default function Topbar() {
     alignItems: "center",
     justifyContent: "center",
     cursor: "pointer",
-
     "&:hover": {
       color: "#33ff33",
-      //   backgroundColor: " #7C8685",
       padding: "2px 10px",
       borderRadius: "10px",
       borer: "none",
     },
   };
+
+  const OpenDrawer = () => {
+    setOpendrawer(true);
+    console.log(openDrwer);
+  };
+
+  const CloseDarwer = () => {
+    setOpendrawer(false);
+  };
+
+  const TypoDraw = styled(Typography)({
+    width: "90%",
+    padding: "2px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    fontWeight: "700",
+    fontSize: "20px",
+    wordSpacing: "1px",
+    color: "white",
+
+    "&:hover": {
+      color: "#dcde9f",
+      borderBottom: "1px solid white",
+      borderRadius: "7px",
+    },
+  });
+
   return (
     <Box sx={{ flexFlow: 1 }}>
       <AppBar
@@ -109,12 +138,51 @@ export default function Topbar() {
                   }}
                 />
               </IconButton>
-              <IconButton aria-label="delete">
+              <IconButton aria-label="delete" sx={{ position: "relative" }}>
                 <SearchOutlinedIcon
                   sx={{
                     fontSize: "35px",
                   }}
                 />
+                <Box>
+                  <TextField
+                    inputProps={{
+                      style: {
+                        backgroundColor: "#f8f8f8",
+                        fontSize: "15px",
+                        borderRadius: "19px",
+                      },
+                    }}
+                    defaultValue=""
+                    label="جستجو در بین دوره ها"
+                    sx={{
+                      position: "absolute",
+                      top: "55px",
+                      left: "-40px",
+                      zIndex: "999",
+                      width: "200px",
+                      "& .MuiInputLabel-root": {
+                        fontSize: "15px",
+                        color: "#22222E",
+                        textAlign: "center",
+                      },
+                      "& fieldset": {
+                        borderColor: "green",
+                        borderRadius: "19px",
+                      },
+
+                      "& label.Mui-focused": {
+                        fontSize: "14px",
+                        color: "#3ec710", // Adjust the font size as needed
+                      },
+                      "& .MuiOutlinedInput-root.Mui-focused": {
+                        "& > fieldset": {
+                          borderColor: "#37745B",
+                        },
+                      },
+                    }}
+                  />
+                </Box>
               </IconButton>
             </Stack>
           </Box>
@@ -177,6 +245,14 @@ export default function Topbar() {
                     justifyContent: "space-between",
                     alignItems: "end",
                   },
+                  ".MuiMenuItem-root": {
+                    backgroundColor: "transparent",
+                    fontSize: "15px",
+                  },
+                  ".MuiMenuItem-root:hover": {
+                    backgroundColor: "inherit",
+                    color: "#33A765",
+                  },
                 }}
                 id="basic-menu"
                 open={openMenu}
@@ -210,6 +286,7 @@ export default function Topbar() {
             </Stack>
           </Box>
           <Box
+            onClick={OpenDrawer}
             sx={{
               display: {
                 sm: "block",
@@ -224,28 +301,52 @@ export default function Topbar() {
               />
             </IconButton>
           </Box>
+
+          <Drawer
+            PaperProps={{
+              sx: {
+                width: 240,
+                backgroundColor: "#183114",
+              },
+            }}
+            variant="temporary"
+            onClose={CloseDarwer}
+            anchor="right"
+            open={openDrwer}>
+            <Box>
+              <Stack
+                sx={{
+                  marginTop: "30px",
+                  display: "flex",
+                  flexDirection: "column-reverse",
+                  gap: "40px",
+                  alignItems: "center",
+                }}>
+                <TypoDraw>
+                  <ArrowDropDownIcon />
+                  درباره ما
+                </TypoDraw>
+                <TypoDraw>
+                  <ArrowDropDownIcon />
+                  مقالات
+                </TypoDraw>
+                <TypoDraw>
+                  <ArrowDropDownIcon />
+                  امنیت
+                </TypoDraw>
+                <TypoDraw>
+                  <ArrowDropDownIcon />
+                  پایتون
+                </TypoDraw>{" "}
+                <TypoDraw>
+                  <ArrowDropDownIcon />
+                  فرانت اند
+                </TypoDraw>
+              </Stack>
+            </Box>
+          </Drawer>
         </Toolbar>
       </AppBar>
     </Box>
   );
 }
-
-// import React from "react";
-
-// export default function Topbar() {
-//   return (
-//     <div>
-//       <ul
-//         style={{
-//           width: "500px",
-//           backgroundColor: "red",
-//           display: "flex",
-//           flexDirection: "column",
-//         }}>
-//         <li style={{ width: "100%", textAlign: "right" }}>asdad</li>
-//         <li style={{ width: "100%" }}>asdad</li>
-//         <li style={{ width: "100%" }}>asdad</li>
-//       </ul>
-//     </div>
-//   );
-// }
