@@ -7,14 +7,12 @@ import {
   Button,
   Stack,
   styled,
-  List,
-  ListItem,
-  Popover,
   Menu,
   MenuItem,
   Paper,
   Drawer,
   TextField,
+  Modal,
 } from "@mui/material";
 import React, { useState } from "react";
 import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
@@ -24,6 +22,7 @@ import ListIcon from "@mui/icons-material/List";
 
 export default function Topbar() {
   const [openDrwer, setOpendrawer] = useState(false);
+  const [opendialog, setOpendialog] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
@@ -87,6 +86,13 @@ export default function Topbar() {
       borderRadius: "7px",
     },
   });
+  const dialoghandler = () => {
+    setOpendialog(true);
+  };
+  const closeModal = () => {
+    setOpendialog(false);
+    console.log(opendialog);
+  };
 
   return (
     <Box sx={{ flexFlow: 1 }}>
@@ -138,51 +144,56 @@ export default function Topbar() {
                   }}
                 />
               </IconButton>
-              <IconButton aria-label="delete" sx={{ position: "relative" }}>
+              <IconButton
+                aria-label="delete"
+                sx={{ position: "relative" }}
+                onClick={dialoghandler}>
                 <SearchOutlinedIcon
                   sx={{
                     fontSize: "35px",
                   }}
                 />
-                <Box>
-                  <TextField
-                    inputProps={{
-                      style: {
-                        backgroundColor: "#f8f8f8",
-                        fontSize: "15px",
-                        borderRadius: "19px",
-                      },
-                    }}
-                    defaultValue=""
-                    label="جستجو در بین دوره ها"
-                    sx={{
-                      position: "absolute",
-                      top: "55px",
-                      left: "-40px",
-                      zIndex: "999",
-                      width: "200px",
-                      "& .MuiInputLabel-root": {
-                        fontSize: "15px",
-                        color: "#22222E",
-                        textAlign: "center",
-                      },
-                      "& fieldset": {
-                        borderColor: "green",
-                        borderRadius: "19px",
-                      },
-
-                      "& label.Mui-focused": {
-                        fontSize: "14px",
-                        color: "#3ec710", // Adjust the font size as needed
-                      },
-                      "& .MuiOutlinedInput-root.Mui-focused": {
-                        "& > fieldset": {
-                          borderColor: "#37745B",
+                <Modal open={opendialog} onClose={closeModal}>
+                  <Box>
+                    <TextField
+                      inputProps={{
+                        style: {
+                          backgroundColor: "#f8f8f8",
+                          fontSize: "15px",
+                          borderRadius: "19px",
                         },
-                      },
-                    }}
-                  />
-                </Box>
+                      }}
+                      defaultValue=""
+                      label="جستجو در بین دوره ها"
+                      sx={{
+                        position: "absolute",
+                        top: "70px",
+                        left: "175px",
+                        zIndex: "999",
+                        width: "200px",
+                        "& .MuiInputLabel-root": {
+                          fontSize: "15px",
+                          color: "#22222E",
+                          textAlign: "center",
+                        },
+                        "& fieldset": {
+                          borderColor: "green",
+                          borderRadius: "19px",
+                        },
+
+                        "& label.Mui-focused": {
+                          fontSize: "14px",
+                          color: "#3ec710", // Adjust the font size as needed
+                        },
+                        "& .MuiOutlinedInput-root.Mui-focused": {
+                          "& > fieldset": {
+                            borderColor: "#37745B",
+                          },
+                        },
+                      }}
+                    />
+                  </Box>
+                </Modal>
               </IconButton>
             </Stack>
           </Box>
