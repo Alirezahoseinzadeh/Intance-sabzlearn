@@ -91,14 +91,14 @@ export default function Topbar() {
   };
   const closeModal = () => {
     setOpendialog(false);
-    console.log(opendialog);
   };
+  console.log(opendialog);
 
   return (
     <Box sx={{ flexFlow: 1 }}>
       <AppBar
         position="static"
-        sx={{ backgroundColor: "#ffffff", color: "#000000" }}>
+        sx={{ backgroundColor: "#ecf5ed", color: "#000000" }}>
         <Toolbar
           sx={{
             display: "flex",
@@ -153,48 +153,49 @@ export default function Topbar() {
                     fontSize: "35px",
                   }}
                 />
-                <Modal open={opendialog} onClose={closeModal}>
-                  <Box>
-                    <TextField
-                      inputProps={{
-                        style: {
-                          backgroundColor: "#f8f8f8",
-                          fontSize: "15px",
-                          borderRadius: "19px",
-                        },
-                      }}
-                      defaultValue=""
-                      label="جستجو در بین دوره ها"
-                      sx={{
-                        position: "absolute",
-                        top: "70px",
-                        left: "175px",
-                        zIndex: "999",
-                        width: "200px",
-                        "& .MuiInputLabel-root": {
-                          fontSize: "15px",
-                          color: "#22222E",
-                          textAlign: "center",
-                        },
-                        "& fieldset": {
-                          borderColor: "green",
-                          borderRadius: "19px",
-                        },
-
-                        "& label.Mui-focused": {
-                          fontSize: "14px",
-                          color: "#3ec710", // Adjust the font size as needed
-                        },
-                        "& .MuiOutlinedInput-root.Mui-focused": {
-                          "& > fieldset": {
-                            borderColor: "#37745B",
-                          },
-                        },
-                      }}
-                    />
-                  </Box>
-                </Modal>
               </IconButton>
+
+              <Modal open={opendialog} onClose={closeModal}>
+                <Box>
+                  <TextField
+                    inputProps={{
+                      style: {
+                        backgroundColor: "#f8f8f8",
+                        fontSize: "15px",
+                        borderRadius: "19px",
+                      },
+                    }}
+                    defaultValue=""
+                    label="جستجو در بین دوره ها"
+                    sx={{
+                      position: "absolute",
+                      top: "70px",
+                      left: "175px",
+                      zIndex: "999",
+                      width: "200px",
+                      "& .MuiInputLabel-root": {
+                        fontSize: "15px",
+                        color: "#22222E",
+                        textAlign: "center",
+                      },
+                      "& fieldset": {
+                        borderColor: "green",
+                        borderRadius: "19px",
+                      },
+
+                      "& label.Mui-focused": {
+                        fontSize: "14px",
+                        color: "#3ec710", // Adjust the font size as needed
+                      },
+                      "& .MuiOutlinedInput-root.Mui-focused": {
+                        "& > fieldset": {
+                          borderColor: "#37745B",
+                        },
+                      },
+                    }}
+                  />
+                </Box>
+              </Modal>
             </Stack>
           </Box>
           <Box
@@ -300,6 +301,7 @@ export default function Topbar() {
             onClick={OpenDrawer}
             sx={{
               display: {
+                xs: "block",
                 sm: "block",
                 md: "none",
               },

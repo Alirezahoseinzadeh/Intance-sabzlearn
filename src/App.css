@@ -3,3 +3,9 @@
 h1 {
   font-family: "Dancing Script", cursive;
 }
+.main {
+  width: 100%;
+  background-image: linear-gradient(to right, #a9c0e2, #ecf5ed);
+  /* height: 100vh; */
+  /* background-color: #44929f; */
+}
