@@ -1,7 +1,11 @@
 import React from "react";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
-export default function Section_Head() {
+type SectionHeadProps = {
+  title: string; // Ensure that the title prop is of type string
+  des: string;
+};
+export default function Section_Head(props: SectionHeadProps) {
   const styleMainStack = {
     position: { xs: "relative", sm: "static" },
     height: { xs: "100px" },
@@ -71,12 +75,10 @@ export default function Section_Head() {
         </Box>
         <Stack spacing={1} sx={sec_chld_main_stck}>
           <Box sx={stylerightbox}>
-            <Typography sx={Typolastcourcestyle}>آخرین دوره ها</Typography>
+            <Typography sx={Typolastcourcestyle}>{props.des}</Typography>
             <Box component="div" sx={Boxrightlastsource} />
           </Box>
-          <Typography sx={TyposecondStyle}>
-            سکوی پرتاپ شما به سمت موفقیت
-          </Typography>
+          <Typography sx={TyposecondStyle}>{props.title}</Typography>
         </Stack>
       </Stack>
     </Container>
