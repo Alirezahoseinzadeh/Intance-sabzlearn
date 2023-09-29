@@ -45,7 +45,8 @@ export default function Section_Content() {
                     fontWeight: "900",
                     marginTop: "10px",
                   }}>
-                  {item.title} <span style={{ color: "#008f47" }}>2023</span>
+                  {item.title}
+                  <span style={{ color: "#008f47" }}>2023</span>
                 </Typography>
                 <hr />
                 <Typography

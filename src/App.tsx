@@ -6,11 +6,13 @@ import Sabzlearn_Section from "./components/sabzlearn-section/Sabzlearn_Section"
 import Section_Head from "./components/section-head/Section_Head";
 import Section_Content from "./components/Section_content/Section_Content";
 import Slider_Content from "./components/slider-content/Slider_Content";
+import Footer from "./components/footer/Footer";
+import Login from "./Pages/Log_In";
 
 export default function App() {
   return (
     <Box>
-      <Topbar />
+      {/* <Topbar />
       <Box component="main" className="main">
         <Stack>
           <Sabzlearn_Section />
@@ -26,6 +28,8 @@ export default function App() {
           <Slider_Content />
         </Stack>
       </Box>
+      <Footer /> */}
+      <Login />
     </Box>
   );
 }

@@ -10,7 +10,6 @@ import {
   Box,
   CardContent,
 } from "@mui/material";
-
 import Products from "../Section_content/Utils";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import "./Slider_Content.css";
@@ -27,7 +26,7 @@ export default function Slider_Content() {
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
           dots: true,
@@ -36,7 +35,7 @@ export default function Slider_Content() {
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 2,
           initialSlide: 2,
         },
@@ -55,7 +54,7 @@ export default function Slider_Content() {
     width: "200px", // Set the width to 200px
   };
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" className="height">
       <Slider {...settings}>
         {Products.map((item) => (
           <Card sx={cardStyle}>
