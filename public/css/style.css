@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "msi";
+  src: url("../fonts/Vazir.eot") format("eot");
+  src: url("../fonts/Vazir.ttf") format("truetype"),
+    url("../fonts/Vazir.woff") format("woff");
+}
+
+* {
+  font-family: "msi" !important;
+}
+
+body {
+  text-align: right;
+  font-family: "msi";
+  margin-top: 2%;
+  padding: 0;
+}
