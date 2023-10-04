@@ -19,7 +19,7 @@ export default function Footer() {
   }));
   return (
     <Box sx={{ backgroundImage: "linear-gradient(to left ,#00abc0, #0082a3)" }}>
-      <Container maxWidth="md" sx={{ backgroundColor: "inherit" }}>
+      <Container maxWidth="lg" sx={{ backgroundColor: "inherit" }}>
         <Stack spacing={2}>
           <Mainbox>
             <Box

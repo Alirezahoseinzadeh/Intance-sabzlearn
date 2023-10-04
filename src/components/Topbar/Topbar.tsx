@@ -19,7 +19,7 @@ import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ListIcon from "@mui/icons-material/List";
-
+import { Link } from "react-router-dom";
 export default function Topbar() {
   const [openDrwer, setOpendrawer] = useState(false);
   const [opendialog, setOpendialog] = useState<boolean>(false);
@@ -113,28 +113,40 @@ export default function Topbar() {
                 <Button
                   sx={{
                     backgroundColor: "#015366",
-                    color: "white",
                     padding: "7px 20px",
-                    fontSize: "15px",
                     fontWeight: 700,
                     borderRadius: "25px",
                     zIndex: 999,
                   }}>
-                  عضویت
+                  <Link
+                    to="/signup"
+                    style={{
+                      textDecoration: "none",
+                      color: "white",
+                      fontSize: "15px",
+                    }}>
+                    عضویت
+                  </Link>
                 </Button>
                 <Button
                   sx={{
                     backgroundColor: "rgb(14 165 233 / 0.5)",
-                    color: "white",
                     padding: "7px 23px",
-                    fontSize: "15px",
                     fontWeight: 700,
                     borderRadius: "0 20px 20px 0",
                     position: "relative",
                     marginLeft: "-20px",
                     textAlign: "right",
                   }}>
-                  ورود
+                  <Link
+                    to="/login"
+                    style={{
+                      textDecoration: "none",
+                      color: "white",
+                      fontSize: "15px",
+                    }}>
+                    ورود
+                  </Link>
                 </Button>
               </Box>
               <IconButton aria-label="delete">

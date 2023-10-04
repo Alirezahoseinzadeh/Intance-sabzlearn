@@ -10,15 +10,21 @@ import {
   InputLabel,
   OutlinedInput,
   Button,
-  styled,
+  Checkbox,
 } from "@mui/material";
-import WifiCalling3Icon from "@mui/icons-material/WifiCalling3";
-import { Link } from "react-router-dom";
-export default function Log_In() {
-  const [phoneNumber, setPhoneNumber] = useState<number>();
 
-  const inputHandler = (e: any) => {
-    setPhoneNumber(e.target.value);
+import EmailIcon from "@mui/icons-material/Email";
+import HttpsIcon from "@mui/icons-material/Https";
+export default function LogInEmail() {
+  const [email, setEmail] = useState<any>("");
+  const [password, setPassword] = useState<any>("");
+
+  const emailhanler = (e: any) => {
+    setEmail(e.target.value);
+  };
+  console.log(email);
+  const passwordhandler = (e: any) => {
+    setPassword(e.target.value);
   };
 
   const main_box = {
@@ -29,7 +35,6 @@ export default function Log_In() {
     justifyContent: "center",
     // alignItems: "center",
   };
-  console.log(phoneNumber);
 
   const f_row_box = {
     display: "flex",
@@ -55,15 +60,17 @@ export default function Log_In() {
   };
 
   const lastTypo = {
+    fontSize: "15px",
+    fontWeight: "500",
     cursor: "pointer",
     "&:hover": {
       color: "#006660",
-      fontSize: "19px",
+      fontSize: "16px",
     },
   };
   return (
     <Box component="div" sx={main_box}>
-      <Container maxWidth="xs" sx={{ height: "400px", marginTop: "30px" }}>
+      <Container maxWidth="xs" sx={{ height: "400px", marginTop: "10px" }}>
         <Stack spacing={4}>
           <Box sx={f_row_box}>
             <Box>
@@ -86,7 +93,7 @@ export default function Log_In() {
             />
           </Box>
           <Stack
-            spacing={3}
+            spacing={4}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -110,7 +117,8 @@ export default function Log_In() {
                 m: 1,
                 width: "36ch",
                 backgroundColor: "#e5e9df",
-                borderRadius: "19px",
+                borderRadius: "15px",
+                borderColor: "1px solid red",
               }}
               variant="outlined">
               <OutlinedInput
@@ -119,16 +127,18 @@ export default function Log_In() {
                     <IconButton
                       aria-label="toggle password visibility"
                       edge="end">
-                      <WifiCalling3Icon />
+                      <EmailIcon />
                     </IconButton>
                   </InputAdornment>
                 }
-                value={phoneNumber}
-                onChange={inputHandler}
+                required
+                type="email"
+                value={email}
+                onChange={emailhanler}
                 id="outlined-adornment-password"
-                label="شماره موبایل"
+                label="آدرس ایمیل"
                 sx={{
-                  borderRadius: "19px",
+                  borderRadius: "15px",
                 }}
               />
               <InputLabel
@@ -136,7 +146,44 @@ export default function Log_In() {
                 sx={{
                   fontSize: "18px",
                 }}>
-                شماره موبایل
+                آدرس ایمیل
+              </InputLabel>
+            </FormControl>
+            <FormControl
+              sx={{
+                m: 1,
+                width: "36ch",
+                backgroundColor: "#e5e9df",
+                borderRadius: "15px",
+              }}
+              variant="outlined">
+              <OutlinedInput
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      edge="end">
+                      <HttpsIcon />
+                    </IconButton>
+                  </InputAdornment>
+                }
+                // error
+
+                type="password"
+                value={password}
+                onChange={passwordhandler}
+                id="outlined-adornment-password"
+                label="رمز عبور"
+                sx={{
+                  borderRadius: "15px",
+                }}
+              />
+              <InputLabel
+                htmlFor="outlined-adornment-password"
+                sx={{
+                  fontSize: "18px",
+                }}>
+                رمز عبور
               </InputLabel>
             </FormControl>
             <Button sx={btnstyle}>تایید</Button>
@@ -151,35 +198,19 @@ export default function Log_In() {
               <Typography
                 component="span"
                 sx={{
-                  fontSize: "18px",
-
+                  fontSize: "15px",
+                  fontWeight: "500",
                   cursor: "pointer",
                   "&:hover": {
                     color: "red",
-                    fontSize: "19px",
+                    fontSize: "16px",
                   },
                 }}>
-                <Link
-                  to="/role"
-                  style={{
-                    textDecoration: "none",
-                    fontSize: "18px",
-                    color: "black",
-                  }}>
-                  حریم خصوصی
-                </Link>
+                فراموشی رمز عبور
               </Typography>
               <Typography component="span" sx={lastTypo}>
-                <Link
-                  to="/LogInEmail"
-                  style={{
-                    textDecoration: "none",
-                    fontSize: "18px",
-                    color: "black",
-                    // "--hover-fontSize": "19px",
-                  }}>
-                  ورود با ایمیل
-                </Link>
+                مرا فراموش نکن
+                <Checkbox />
               </Typography>
             </Box>
           </Stack>
