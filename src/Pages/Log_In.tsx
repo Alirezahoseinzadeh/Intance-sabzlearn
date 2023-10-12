@@ -14,8 +14,9 @@ import {
 } from "@mui/material";
 import WifiCalling3Icon from "@mui/icons-material/WifiCalling3";
 import { Link } from "react-router-dom";
+import { Login } from "../components/api/ApiService";
 export default function Log_In() {
-  const [phoneNumber, setPhoneNumber] = useState<number>();
+  const [phoneNumber, setPhoneNumber] = useState<string>();
 
   const inputHandler = (e: any) => {
     setPhoneNumber(e.target.value);
@@ -60,6 +61,14 @@ export default function Log_In() {
       color: "#006660",
       fontSize: "19px",
     },
+  };
+
+  const login = async () => {
+    if (phoneNumber) {
+      try {
+        const response = await Login(phoneNumber);
+      } catch (error) {}
+    }
   };
   return (
     <Box component="div" sx={main_box}>
@@ -139,7 +148,9 @@ export default function Log_In() {
                 شماره موبایل
               </InputLabel>
             </FormControl>
-            <Button sx={btnstyle}>تایید</Button>
+            <Button sx={btnstyle} onClick={login}>
+              تایید
+            </Button>
             <Box
               sx={{
                 display: "flex",

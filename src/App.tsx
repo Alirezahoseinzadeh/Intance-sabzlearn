@@ -7,6 +7,7 @@ import Home from "./Pages/Home/Home";
 import LogInEmail from "./Pages/LogInEmail";
 import Roles from "./Pages/Roles";
 import SignUp from "./Pages/SignUp";
+import InfoUser from "./Pages/InfoUser";
 export default function App() {
   return (
     <Box>
@@ -16,7 +17,9 @@ export default function App() {
         <Route path="/loginemail" element={<LogInEmail />} />
         <Route path="role" element={<Roles />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/userinfo" element={<InfoUser />} />
       </Routes>
+      {/* <InfoUser /> */}
     </Box>
   );
 }

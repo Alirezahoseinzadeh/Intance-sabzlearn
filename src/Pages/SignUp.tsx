@@ -18,6 +18,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import CallEndIcon from "@mui/icons-material/CallEnd";
 import EmailIcon from "@mui/icons-material/Email";
 import HttpsIcon from "@mui/icons-material/Https";
+import { Register } from "../components/api/ApiService";
 // import { PhoenRegex } from "../components/RegexHelper";
 
 export default function LogInEmail() {
@@ -34,7 +35,7 @@ export default function LogInEmail() {
   };
 
   const validatePhone = (phone: any): boolean => {
-    const phoneRegex = /^09[09|01|3|4][0-9]{7}$/;
+    const phoneRegex = /^09[09|01|3|4][0-9]{8}$/;
     return phoneRegex.test(phone);
   };
 
@@ -66,6 +67,19 @@ export default function LogInEmail() {
     setPassError(!validatePassword(newPass));
   };
 
+  const submitHandler = async () => {
+    if (user && phone && email && password) {
+      try {
+        const respone = await Register(user, email, phone, password);
+        console.log(respone);
+        console.log("test");
+      } catch (error) {
+        alert("کیرخوردی");
+      }
+    } else {
+      alert("لطفا تمامی موارد مورد نیاز را پر کنید");
+    }
+  };
   const main_box = {
     backgroundColor: "#edefe9",
     width: "100%",
@@ -336,7 +350,9 @@ export default function LogInEmail() {
             ) : (
               ""
             )}
-            <Button sx={btnstyle}>تایید</Button>
+            <Button sx={btnstyle} onClick={submitHandler}>
+              تایید
+            </Button>
           </Stack>
         </Stack>
       </Container>

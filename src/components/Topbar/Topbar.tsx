@@ -9,21 +9,27 @@ import {
   styled,
   Menu,
   MenuItem,
-  Paper,
   Drawer,
   TextField,
   Modal,
+  Divider,
 } from "@mui/material";
 import React, { useState } from "react";
 import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ListIcon from "@mui/icons-material/List";
+import Person3Icon from "@mui/icons-material/Person3";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Link } from "react-router-dom";
 export default function Topbar() {
   const [openDrwer, setOpendrawer] = useState(false);
   const [opendialog, setOpendialog] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(true);
+  const [openModalUser, setopenModalUser] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
   const handleclick = (e: any) => {
@@ -33,6 +39,7 @@ export default function Topbar() {
   const closehandler = () => {
     setAnchorEl(null);
   };
+
   const TypoMenu = styled(Typography)({
     display: "flex",
     alignItems: "center",
@@ -92,8 +99,13 @@ export default function Topbar() {
   const closeModal = () => {
     setOpendialog(false);
   };
-  console.log(opendialog);
 
+  const closeModalUser = () => {
+    setopenModalUser(false);
+  };
+  const modalUser = () => {
+    setopenModalUser(true);
+  };
   return (
     <Box sx={{ flexFlow: 1 }}>
       <AppBar
@@ -148,6 +160,111 @@ export default function Topbar() {
                     ورود
                   </Link>
                 </Button>
+
+                {/* <IconButton onClick={modalUser}>
+                  <Person3Icon sx={{ fontSize: "35px" }} />
+                </IconButton>
+
+                <Modal open={openModalUser} onClose={closeModalUser}>
+                  <Box
+                    sx={{
+                      width: "300px",
+                      height: "250px",
+                      backgroundColor: "white",
+                      position: "absolute",
+                      top: "60px",
+                      left: "20px",
+                      display: "flex",
+                      flexDirection: "column",
+                      padding: "20px",
+                      borderRadius: "11px",
+                    }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "end",
+                        columnGap: "20px",
+                        marginBottom: "10px",
+                      }}>
+                      <Box>
+                        <Typography
+                          sx={{
+                            fontSize: "18px",
+                          }}>
+                          علیرضا حسین زاده
+                        </Typography>
+                        <Typography
+                          sx={{
+                            color: "blue",
+                            cursor: "pointer",
+                            fontSize: "19px",
+                          }}>
+                          موجودی : 0 تومان
+                        </Typography>
+                      </Box>
+                      <PersonOutlineIcon sx={{ fontSize: "45px" }} />
+                    </Box>
+                    <Divider />
+                    <Stack
+                      sx={{ marginTop: "8px", marginBottom: "8px" }}
+                      spacing={1}>
+                      <Button
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "end",
+                          columnGap: "10px",
+                          color: "black",
+                          fontSize: "18px",
+                          "&:hover": {
+                            backgroundColor: "#f9f9f9",
+                          },
+                        }}
+                        endIcon={
+                          <HomeOutlinedIcon style={{ fontSize: "30px" }} />
+                        }>
+                        پیشخوان
+                      </Button>
+                      <Button
+                        sx={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "end",
+                          columnGap: "10px",
+                          color: "black",
+                          fontSize: "18px",
+                          "&:hover": {
+                            backgroundColor: "#f9f9f9",
+                          },
+                        }}
+                        endIcon={
+                          <WalletOutlinedIcon style={{ fontSize: "30px" }} />
+                        }>
+                        دوره های من
+                      </Button>
+                    </Stack>
+                    <Divider />
+                    <Button
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "end",
+                        columnGap: "10px",
+                        color: "black",
+                        fontSize: "20px",
+                        marginTop: "15px",
+                        "&:hover": {
+                          backgroundColor: "#f9f9f9",
+                        },
+                      }}
+                      endIcon={
+                        <LogoutOutlinedIcon style={{ fontSize: "30px" }} />
+                      }>
+                      خروج
+                    </Button>
+                  </Box>
+                </Modal> */}
               </Box>
               <IconButton aria-label="delete">
                 <ModeNightOutlinedIcon
@@ -172,8 +289,10 @@ export default function Topbar() {
                   <TextField
                     inputProps={{
                       style: {
-                        backgroundColor: "#f8f8f8",
-                        fontSize: "15px",
+                        backgroundColor: "#021E20",
+                        color: "whitesmoke",
+                        fontSize: "20px",
+                        fontWeight: "700",
                         borderRadius: "19px",
                       },
                     }}
@@ -184,24 +303,25 @@ export default function Topbar() {
                       top: "70px",
                       left: "175px",
                       zIndex: "999",
-                      width: "200px",
+                      width: "300px",
                       "& .MuiInputLabel-root": {
                         fontSize: "15px",
-                        color: "#22222E",
+                        color: "whitesmoke",
                         textAlign: "center",
                       },
                       "& fieldset": {
-                        borderColor: "green",
+                        // borderColor: "white",
                         borderRadius: "19px",
                       },
 
                       "& label.Mui-focused": {
                         fontSize: "14px",
-                        color: "#3ec710", // Adjust the font size as needed
+                        color: "whitesmoke", // Adjust the font size as needed
                       },
                       "& .MuiOutlinedInput-root.Mui-focused": {
                         "& > fieldset": {
-                          borderColor: "#37745B",
+                          // borderColor: "whitesmoke",
+                          border: "none",
                         },
                       },
                     }}
