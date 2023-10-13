@@ -12,13 +12,15 @@ import {
   Button,
   FormHelperText,
   Checkbox,
+  Snackbar,
 } from "@mui/material";
 
 import PersonIcon from "@mui/icons-material/Person";
 import CallEndIcon from "@mui/icons-material/CallEnd";
 import EmailIcon from "@mui/icons-material/Email";
 import HttpsIcon from "@mui/icons-material/Https";
-import { Register } from "../components/api/ApiService";
+import { Register } from "../api/ApiService";
+import { useNavigate } from "react-router-dom";
 // import { PhoenRegex } from "../components/RegexHelper";
 
 export default function LogInEmail() {
@@ -29,6 +31,9 @@ export default function LogInEmail() {
   const [emailError, setEmailError] = useState<boolean>(false);
   const [phoneError, setPhoneError] = useState<boolean>(false);
   const [passError, setPassError] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const userhandler = (e: any) => {
     setUser(e.target.value);
@@ -70,16 +75,38 @@ export default function LogInEmail() {
   const submitHandler = async () => {
     if (user && phone && email && password) {
       try {
-        const respone = await Register(user, email, phone, password);
-        console.log(respone);
-        console.log("test");
-      } catch (error) {
-        alert("کیرخوردی");
+        const response = await Register(user, email, phone, password);
+        setOpen(true);
+        setUser("");
+        setEmail("");
+        setPhone("");
+        setPassword("");
+        setTimeout(() => {
+          if (response) {
+            navigate("/login");
+          }
+        }, 3000);
+      } catch (error: any) {
+        console.log(error);
+        if (error.response.status == 400) {
+          alert(error.response.data.message);
+        }
       }
     } else {
       alert("لطفا تمامی موارد مورد نیاز را پر کنید");
     }
   };
+
+  // snack
+
+  const handleClose = (event: any, reason: any) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
   const main_box = {
     backgroundColor: "#edefe9",
     width: "100%",
@@ -356,6 +383,12 @@ export default function LogInEmail() {
           </Stack>
         </Stack>
       </Container>
+      <Snackbar
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}
+        message="ثبت نام با موفقیت انجام شد"
+      />
     </Box>
   );
 }

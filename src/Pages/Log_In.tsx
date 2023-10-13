@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import WifiCalling3Icon from "@mui/icons-material/WifiCalling3";
 import { Link } from "react-router-dom";
-import { Login } from "../components/api/ApiService";
+import { Login } from "../api/ApiService";
 export default function Log_In() {
   const [phoneNumber, setPhoneNumber] = useState<string>();
 
@@ -67,7 +67,10 @@ export default function Log_In() {
     if (phoneNumber) {
       try {
         const response = await Login(phoneNumber);
-      } catch (error) {}
+        console.log(response);
+      } catch (error) {
+        console.log("error");
+      }
     }
   };
   return (

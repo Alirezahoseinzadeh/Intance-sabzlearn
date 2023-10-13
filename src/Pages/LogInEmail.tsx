@@ -15,9 +15,25 @@ import {
 
 import EmailIcon from "@mui/icons-material/Email";
 import HttpsIcon from "@mui/icons-material/Https";
+import { LoginEmail } from "../api/ApiService";
 export default function LogInEmail() {
-  const [email, setEmail] = useState<any>("");
-  const [password, setPassword] = useState<any>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const submit = async () => {
+    if (email && password) {
+      try {
+        const response = await LoginEmail(email, password, "web");
+        console.log("ok");
+      } catch (error: any) {
+        if (error.response.status == 400) {
+          alert(error.response.data.message);
+        }
+      }
+    } else {
+      alert("لطفا اطلاعات خود را وارد نمایید");
+    }
+  };
 
   const emailhanler = (e: any) => {
     setEmail(e.target.value);
@@ -186,7 +202,9 @@ export default function LogInEmail() {
                 رمز عبور
               </InputLabel>
             </FormControl>
-            <Button sx={btnstyle}>تایید</Button>
+            <Button sx={btnstyle} onClick={submit}>
+              تایید
+            </Button>
             <Box
               sx={{
                 display: "flex",

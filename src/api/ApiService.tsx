@@ -18,15 +18,17 @@ export const Register = async (
   });
 };
 
-// Login api
+// Login With number api
 export const Login = async (phoneNumber: string) => {
   return instance.post("api/Users/v1/Auth/SendOtp", { phoneNumber });
 };
 
+// Login with Email
+
 export const LoginEmail = async (
   email: string,
   password: string,
-  devide: string
+  device: string
 ) => {
-  return instance.post("api/Users/v1/Auth/Login", {});
+  return instance.post("api/Users/v1/Auth/Login", { email, password, device });
 };
