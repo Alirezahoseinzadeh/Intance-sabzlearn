@@ -20,7 +20,7 @@ import CallEndIcon from "@mui/icons-material/CallEnd";
 import EmailIcon from "@mui/icons-material/Email";
 import HttpsIcon from "@mui/icons-material/Https";
 import { Register } from "../api/ApiService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { PhoenRegex } from "../components/RegexHelper";
 
 export default function LogInEmail() {
@@ -61,15 +61,15 @@ export default function LogInEmail() {
     setEmailError(!validateEmail(newEmail));
   };
 
-  const validatePassword = (pass: any): boolean => {
-    const passwordRegex =
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/;
-    return passwordRegex.test(pass);
-  };
+  // const validatePassword = (pass: any): boolean => {
+  //   const passwordRegex =
+  //     /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/;
+  //   return passwordRegex.test(pass);
+  // };
   const passwordhandler = (e: any) => {
-    const newPass = e.target.value;
-    setPassword(newPass);
-    setPassError(!validatePassword(newPass));
+    // const newPass = e.target.value;
+    setPassword(e.target.value);
+    // setPassError(!validatePassword(newPass));
   };
 
   const submitHandler = async () => {
@@ -184,9 +184,17 @@ export default function LogInEmail() {
             <Typography
               sx={{ fontSize: "19px", fontWeight: "400", color: "#55595f" }}>
               قبلا ثبت نام کرده اید؟
-              <span style={{ color: "green", cursor: "pointer" }}>
+              <span>
                 {" "}
-                وارد شوید{" "}
+                <Link
+                  to="/login"
+                  style={{
+                    textDecoration: "none",
+                    color: "green",
+                    cursor: "pointer",
+                  }}>
+                  وارد شوید{" "}
+                </Link>
               </span>
             </Typography>
             <FormControl

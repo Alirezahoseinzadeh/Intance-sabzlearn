@@ -16,15 +16,20 @@ import {
 import EmailIcon from "@mui/icons-material/Email";
 import HttpsIcon from "@mui/icons-material/Https";
 import { LoginEmail } from "../api/ApiService";
+import { Link, useNavigate } from "react-router-dom";
 export default function LogInEmail() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const submit = async () => {
     if (email && password) {
       try {
         const response = await LoginEmail(email, password, "web");
-        console.log("ok");
+        localStorage.setItem("accessToken", response.data.data.token);
+        localStorage.setItem("refreshToken", response.data.data.refreshToken);
+        navigate("/");
       } catch (error: any) {
         if (error.response.status == 400) {
           alert(error.response.data.message);
@@ -50,13 +55,6 @@ export default function LogInEmail() {
     display: "flex",
     justifyContent: "center",
     // alignItems: "center",
-  };
-
-  const f_row_box = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    columnGap: "10px",
   };
 
   const btnstyle = {
@@ -88,25 +86,40 @@ export default function LogInEmail() {
     <Box component="div" sx={main_box}>
       <Container maxWidth="xs" sx={{ height: "400px", marginTop: "10px" }}>
         <Stack spacing={4}>
-          <Box sx={f_row_box}>
-            <Box>
-              <Typography sx={{ fontSize: "37px", fontWeight: "800" }}>
-                سبزلرن
-              </Typography>
-              <Typography
-                sx={{
-                  fontSize: "20px",
-                  letterSpacing: "2px",
-                  color: "#55595f",
-                }}>
-                sabzlearn.ir
-              </Typography>
-            </Box>
-            <Box
-              component="img"
-              src="logo.Webp"
-              sx={{ width: "104px", height: "70px" }}
-            />
+          <Box>
+            <Link
+              to="/"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                columnGap: "10px",
+                textDecoration: "none",
+                color: "black",
+              }}>
+              <Box>
+                <Typography
+                  sx={{
+                    fontSize: "37px",
+                    fontWeight: "800",
+                  }}>
+                  سبزلرن
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "20px",
+                    letterSpacing: "2px",
+                    color: "#55595f",
+                  }}>
+                  sabzlearn.ir
+                </Typography>
+              </Box>
+              <Box
+                component="img"
+                src="logo.Webp"
+                sx={{ width: "104px", height: "70px" }}
+              />
+            </Link>
           </Box>
           <Stack
             spacing={4}

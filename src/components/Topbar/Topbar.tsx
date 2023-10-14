@@ -31,6 +31,8 @@ export default function Topbar() {
   const [open, setOpen] = useState<boolean>(true);
   const [openModalUser, setopenModalUser] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const isLogin = localStorage.getItem("accessToken");
   const openMenu = Boolean(anchorEl);
   const handleclick = (e: any) => {
     setAnchorEl(e.currentTarget);
@@ -47,9 +49,9 @@ export default function Topbar() {
     cursor: "pointer",
 
     "&:hover": {
-      color: "#33ff33",
-      padding: "2px 10px",
+      color: "#008f47",
       borderRadius: "10px",
+      fontSize: "20px",
       borer: "none",
     },
   });
@@ -59,11 +61,18 @@ export default function Topbar() {
     justifyContent: "center",
     cursor: "pointer",
     "&:hover": {
-      color: "#33ff33",
-      padding: "2px 10px",
+      color: "#008f47",
       borderRadius: "10px",
+      fontSize: "20px",
       borer: "none",
     },
+  };
+  const exithandler = () => {
+    console.log("test");
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setopenModalUser(false);
+    alert("از حساب کاربری خود خارج شدید");
   };
 
   const OpenDrawer = () => {
@@ -122,149 +131,166 @@ export default function Topbar() {
               spacing={3}
               sx={{ display: "flex", alignItems: "center" }}>
               <Box>
-                <Button
-                  sx={{
-                    backgroundColor: "#015366",
-                    padding: "7px 20px",
-                    fontWeight: 700,
-                    borderRadius: "25px",
-                    zIndex: 999,
-                  }}>
-                  <Link
-                    to="/signup"
-                    style={{
-                      textDecoration: "none",
-                      color: "white",
-                      fontSize: "15px",
-                    }}>
-                    عضویت
-                  </Link>
-                </Button>
-                <Button
-                  sx={{
-                    backgroundColor: "rgb(14 165 233 / 0.5)",
-                    padding: "7px 23px",
-                    fontWeight: 700,
-                    borderRadius: "0 20px 20px 0",
-                    position: "relative",
-                    marginLeft: "-20px",
-                    textAlign: "right",
-                  }}>
-                  <Link
-                    to="/login"
-                    style={{
-                      textDecoration: "none",
-                      color: "white",
-                      fontSize: "15px",
-                    }}>
-                    ورود
-                  </Link>
-                </Button>
+                {isLogin ? (
+                  <>
+                    <IconButton onClick={modalUser}>
+                      <Person3Icon sx={{ fontSize: "35px" }} />
+                    </IconButton>
 
-                {/* <IconButton onClick={modalUser}>
-                  <Person3Icon sx={{ fontSize: "35px" }} />
-                </IconButton>
+                    <Modal open={openModalUser} onClose={closeModalUser}>
+                      <Box
+                        sx={{
+                          width: "300px",
+                          height: "250px",
+                          backgroundColor: "white",
+                          position: "absolute",
+                          top: "60px",
+                          left: "20px",
+                          display: "flex",
+                          flexDirection: "column",
+                          padding: "20px",
+                          borderRadius: "11px",
+                        }}>
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "end",
+                            columnGap: "20px",
+                            marginBottom: "10px",
+                          }}>
+                          <Box>
+                            <Typography
+                              sx={{
+                                fontSize: "18px",
+                              }}>
+                              علیرضا حسین زاده
+                            </Typography>
+                            <Typography
+                              sx={{
+                                color: "blue",
+                                cursor: "pointer",
+                                fontSize: "19px",
+                              }}>
+                              موجودی : 0 تومان
+                            </Typography>
+                          </Box>
+                          <PersonOutlineIcon sx={{ fontSize: "45px" }} />
+                        </Box>
+                        <Divider />
+                        <Stack
+                          sx={{ marginTop: "8px", marginBottom: "8px" }}
+                          spacing={1}>
+                          <Button
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "end",
+                              columnGap: "10px",
+                              fontSize: "18px",
+                              color: "black",
 
-                <Modal open={openModalUser} onClose={closeModalUser}>
-                  <Box
-                    sx={{
-                      width: "300px",
-                      height: "250px",
-                      backgroundColor: "white",
-                      position: "absolute",
-                      top: "60px",
-                      left: "20px",
-                      display: "flex",
-                      flexDirection: "column",
-                      padding: "20px",
-                      borderRadius: "11px",
-                    }}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "end",
-                        columnGap: "20px",
-                        marginBottom: "10px",
-                      }}>
-                      <Box>
-                        <Typography
+                              "&:hover": {
+                                backgroundColor: "#f9f9f9",
+                              },
+                            }}
+                            endIcon={
+                              <HomeOutlinedIcon style={{ fontSize: "32px" }} />
+                            }>
+                            <Link
+                              to="/userinfo"
+                              style={{
+                                textDecoration: "none",
+                                color: "black",
+                              }}>
+                              پیشخوان
+                            </Link>
+                          </Button>
+                          <Button
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "end",
+                              columnGap: "10px",
+                              color: "black",
+                              fontSize: "18px",
+                              "&:hover": {
+                                backgroundColor: "#f9f9f9",
+                              },
+                            }}
+                            endIcon={
+                              <WalletOutlinedIcon
+                                style={{ fontSize: "30px" }}
+                              />
+                            }>
+                            دوره های من
+                          </Button>
+                        </Stack>
+                        <Divider />
+                        <Button
+                          onClick={exithandler}
                           sx={{
-                            fontSize: "18px",
-                          }}>
-                          علیرضا حسین زاده
-                        </Typography>
-                        <Typography
-                          sx={{
-                            color: "blue",
-                            cursor: "pointer",
-                            fontSize: "19px",
-                          }}>
-                          موجودی : 0 تومان
-                        </Typography>
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "end",
+                            columnGap: "10px",
+                            color: "black",
+                            fontSize: "20px",
+                            marginTop: "15px",
+                            "&:hover": {
+                              backgroundColor: "#f9f9f9",
+                            },
+                          }}
+                          endIcon={
+                            <LogoutOutlinedIcon style={{ fontSize: "30px" }} />
+                          }>
+                          خروج
+                        </Button>
                       </Box>
-                      <PersonOutlineIcon sx={{ fontSize: "45px" }} />
-                    </Box>
-                    <Divider />
-                    <Stack
-                      sx={{ marginTop: "8px", marginBottom: "8px" }}
-                      spacing={1}>
-                      <Button
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "end",
-                          columnGap: "10px",
-                          color: "black",
-                          fontSize: "18px",
-                          "&:hover": {
-                            backgroundColor: "#f9f9f9",
-                          },
-                        }}
-                        endIcon={
-                          <HomeOutlinedIcon style={{ fontSize: "30px" }} />
-                        }>
-                        پیشخوان
-                      </Button>
-                      <Button
-                        sx={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "end",
-                          columnGap: "10px",
-                          color: "black",
-                          fontSize: "18px",
-                          "&:hover": {
-                            backgroundColor: "#f9f9f9",
-                          },
-                        }}
-                        endIcon={
-                          <WalletOutlinedIcon style={{ fontSize: "30px" }} />
-                        }>
-                        دوره های من
-                      </Button>
-                    </Stack>
-                    <Divider />
+                    </Modal>
+                  </>
+                ) : (
+                  <>
                     <Button
                       sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "end",
-                        columnGap: "10px",
-                        color: "black",
-                        fontSize: "20px",
-                        marginTop: "15px",
-                        "&:hover": {
-                          backgroundColor: "#f9f9f9",
-                        },
-                      }}
-                      endIcon={
-                        <LogoutOutlinedIcon style={{ fontSize: "30px" }} />
-                      }>
-                      خروج
+                        backgroundColor: "#015366",
+                        padding: "7px 20px",
+                        fontWeight: 700,
+                        borderRadius: "25px",
+                        zIndex: 999,
+                      }}>
+                      <Link
+                        to="/signup"
+                        style={{
+                          textDecoration: "none",
+                          color: "white",
+                          fontSize: "15px",
+                        }}>
+                        عضویت
+                      </Link>
                     </Button>
-                  </Box>
-                </Modal> */}
+                    <Button
+                      sx={{
+                        backgroundColor: "rgb(14 165 233 / 0.5)",
+                        padding: "7px 23px",
+                        fontWeight: 700,
+                        borderRadius: "0 20px 20px 0",
+                        position: "relative",
+                        marginLeft: "-20px",
+                        textAlign: "right",
+                      }}>
+                      <Link
+                        to="/login"
+                        style={{
+                          textDecoration: "none",
+                          color: "white",
+                          fontSize: "15px",
+                        }}>
+                        ورود
+                      </Link>
+                    </Button>
+                  </>
+                )}
               </Box>
               <IconButton aria-label="delete">
                 <ModeNightOutlinedIcon

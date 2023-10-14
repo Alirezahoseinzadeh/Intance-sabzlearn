@@ -112,9 +112,17 @@ export default function Log_In() {
             <Typography
               sx={{ fontSize: "22px", fontWeight: "400", color: "#55595f" }}>
               حساب کاربری ندارید؟
-              <span style={{ color: "green", cursor: "pointer" }}>
+              <span>
                 {" "}
-                ثبت نام{" "}
+                <Link
+                  to="/signup"
+                  style={{
+                    textDecoration: "none",
+                    color: "green",
+                    cursor: "pointer",
+                  }}>
+                  ثبت نام{" "}
+                </Link>
               </span>
             </Typography>
             <FormControl
