@@ -19,7 +19,7 @@ export default function Section_Content() {
     <Container maxWidth="md">
       <Grid container spacing={2} sx={{ marginTop: "10px" }}>
         {Products.map((item) => (
-          <Grid item md={4} sm={6} xs={12}>
+          <Grid key={item.id} item md={4} sm={6} xs={12}>
             <Card sx={{ borderRadius: "10px" }}>
               <CardMedia
                 component="img"

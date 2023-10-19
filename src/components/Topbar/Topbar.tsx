@@ -25,6 +25,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Link } from "react-router-dom";
+import { UserInfo } from "../../api/ApiService";
 export default function Topbar() {
   const [openDrwer, setOpendrawer] = useState(false);
   const [opendialog, setOpendialog] = useState<boolean>(false);
@@ -112,7 +113,9 @@ export default function Topbar() {
   const closeModalUser = () => {
     setopenModalUser(false);
   };
-  const modalUser = () => {
+  const modalUser = async () => {
+    const response = await UserInfo();
+    console.log("test", response.data.data);
     setopenModalUser(true);
   };
   return (
@@ -141,7 +144,7 @@ export default function Topbar() {
                       <Box
                         sx={{
                           width: "300px",
-                          height: "250px",
+                          height: "290px",
                           backgroundColor: "white",
                           position: "absolute",
                           top: "60px",

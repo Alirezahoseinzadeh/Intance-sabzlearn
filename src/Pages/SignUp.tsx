@@ -32,11 +32,18 @@ export default function LogInEmail() {
   const [phoneError, setPhoneError] = useState<boolean>(false);
   const [passError, setPassError] = useState<boolean>(false);
   const [open, setOpen] = useState(false);
-
+  const [lngChek, setLngChek] = useState(false);
   const navigate = useNavigate();
 
+  const validateUser = (user: string) => {
+    const userPattern = /^[\u0600-\u06FF\s]+$/;
+    return userPattern.test(user);
+  };
+
   const userhandler = (e: any) => {
-    setUser(e.target.value);
+    const userinfo = e.target.value;
+    setUser(userinfo);
+    setLngChek(!validateUser(userinfo));
   };
 
   const validatePhone = (phone: any): boolean => {
@@ -73,7 +80,15 @@ export default function LogInEmail() {
   };
 
   const submitHandler = async () => {
-    if (user && phone && email && password) {
+    if (
+      user &&
+      phone &&
+      email &&
+      password &&
+      !emailError &&
+      !lngChek &&
+      !phoneError
+    ) {
       try {
         const response = await Register(user, email, phone, password);
         setOpen(true);
@@ -227,13 +242,27 @@ export default function LogInEmail() {
                 }}
               />
               <InputLabel
-                htmlFor="outlined-adornment-password"
+                htmlFor="outlined-adornment-user"
                 sx={{
                   fontSize: "18px",
                 }}>
                 نام کاربری
               </InputLabel>
             </FormControl>
+            {lngChek ? (
+              <FormHelperText
+                id="outlined-adornment-user"
+                style={{
+                  color: "red",
+                  marginTop: "9px",
+                  marginLeft: "0px",
+                  width: "70%",
+                }}>
+                نام خود را با زبان فارسی وارد کنید
+              </FormHelperText>
+            ) : (
+              ""
+            )}
             <FormControl
               sx={{
                 m: 1,

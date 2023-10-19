@@ -57,7 +57,7 @@ export default function Slider_Content() {
     <Container maxWidth="md" className="height">
       <Slider {...settings}>
         {Products.map((item) => (
-          <Card sx={cardStyle}>
+          <Card key={item.id} sx={cardStyle}>
             <CardMedia
               component="img"
               src={item.src}

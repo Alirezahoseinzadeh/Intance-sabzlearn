@@ -13,10 +13,15 @@ import {
   styled,
 } from "@mui/material";
 import WifiCalling3Icon from "@mui/icons-material/WifiCalling3";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+
 import { Login } from "../api/ApiService";
+import ConfirmCode from "./ConfirmCode/ConfirmCode";
 export default function Log_In() {
+  const navigate = useNavigate();
   const [phoneNumber, setPhoneNumber] = useState<string>();
+  const [codeValid, setCodeValid] = useState<string>();
 
   const inputHandler = (e: any) => {
     setPhoneNumber(e.target.value);
@@ -28,9 +33,7 @@ export default function Log_In() {
     height: "100vh",
     display: "flex",
     justifyContent: "center",
-    // alignItems: "center",
   };
-  console.log(phoneNumber);
 
   const f_row_box = {
     display: "flex",
@@ -67,7 +70,9 @@ export default function Log_In() {
     if (phoneNumber) {
       try {
         const response = await Login(phoneNumber);
-        console.log(response);
+        localStorage.setItem("phonenumber", phoneNumber);
+        // console.log(response);
+        navigate("/confirmcode");
       } catch (error) {
         console.log("error");
       }
@@ -174,7 +179,6 @@ export default function Log_In() {
                 component="span"
                 sx={{
                   fontSize: "18px",
-
                   cursor: "pointer",
                   "&:hover": {
                     color: "red",
@@ -198,7 +202,6 @@ export default function Log_In() {
                     textDecoration: "none",
                     fontSize: "18px",
                     color: "black",
-                    // "--hover-fontSize": "19px",
                   }}>
                   ورود با ایمیل
                 </Link>

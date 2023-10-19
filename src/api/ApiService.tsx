@@ -87,3 +87,22 @@ export const LoginEmail = async (
 ) => {
   return instance.post("api/Users/v1/Auth/Login", { email, password, device });
 };
+
+// Get User INfo Api
+
+export const UserInfo = async () => {
+  return instance.get("api/Users/v1/Auth/GetUserInfo");
+};
+
+// confirm code
+export const OtpLogin = async (
+  phoneNumber: string,
+  confirmCode: string,
+  device: string
+) => {
+  return instance.post("api/Users/v1/Auth/ConfirmCode", {
+    phoneNumber,
+    confirmCode,
+    device,
+  });
+};
