@@ -106,3 +106,7 @@ export const OtpLogin = async (
     device,
   });
 };
+
+export const GetCourseCategories = async () => {
+  return instance.get("api/Users/v1/Course/GetCourseCategories");
+};

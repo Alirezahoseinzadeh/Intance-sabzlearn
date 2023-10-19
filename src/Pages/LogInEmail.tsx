@@ -15,16 +15,20 @@ import {
 
 import EmailIcon from "@mui/icons-material/Email";
 import HttpsIcon from "@mui/icons-material/Https";
+import RemoveRedEyeRoundedIcon from "@mui/icons-material/RemoveRedEyeRounded";
+import VisibilityOffRoundedIcon from "@mui/icons-material/VisibilityOffRounded";
 import { LoginEmail } from "../api/ApiService";
 import { Link, useNavigate } from "react-router-dom";
 export default function LogInEmail() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-
+  const [showPass, setShowPass] = useState<boolean>(false);
+  const [btnDisable, setBtnDisable] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const submit = async () => {
     if (email && password) {
+      setBtnDisable(true);
       try {
         const response = await LoginEmail(email, password, "web");
         localStorage.setItem("accessToken", response.data.data.token);
@@ -33,10 +37,12 @@ export default function LogInEmail() {
       } catch (error: any) {
         if (error.response.status == 400) {
           alert(error.response.data.message);
+          setBtnDisable(false);
         }
       }
     } else {
       alert("لطفا اطلاعات خود را وارد نمایید");
+      setBtnDisable(false);
     }
   };
 
@@ -192,13 +198,21 @@ export default function LogInEmail() {
                     <IconButton
                       aria-label="toggle password visibility"
                       edge="end">
-                      <HttpsIcon />
+                      {showPass ? (
+                        <VisibilityOffRoundedIcon
+                          onClick={() => setShowPass(false)}
+                        />
+                      ) : (
+                        <RemoveRedEyeRoundedIcon
+                          onClick={() => setShowPass(true)}
+                        />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 }
                 // error
 
-                type="password"
+                type={showPass ? "text" : "password"}
                 value={password}
                 onChange={passwordhandler}
                 id="outlined-adornment-password"
@@ -215,7 +229,7 @@ export default function LogInEmail() {
                 رمز عبور
               </InputLabel>
             </FormControl>
-            <Button sx={btnstyle} onClick={submit}>
+            <Button sx={btnstyle} onClick={submit} disabled={btnDisable}>
               تایید
             </Button>
             <Box

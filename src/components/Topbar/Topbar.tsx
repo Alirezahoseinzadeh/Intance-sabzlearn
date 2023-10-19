@@ -14,62 +14,29 @@ import {
   Modal,
   Divider,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ListIcon from "@mui/icons-material/List";
 import Person3Icon from "@mui/icons-material/Person3";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Link } from "react-router-dom";
-import { UserInfo } from "../../api/ApiService";
+import { GetCourseCategories, UserInfo } from "../../api/ApiService";
+import { TypoDraw, TypoMenu } from "./Topbar.styles";
+import CoursesCategories from "./CoursesCategories";
 export default function Topbar() {
   const [openDrwer, setOpendrawer] = useState(false);
   const [opendialog, setOpendialog] = useState<boolean>(false);
-  const [open, setOpen] = useState<boolean>(true);
+
   const [openModalUser, setopenModalUser] = useState<boolean>(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-
   const isLogin = localStorage.getItem("accessToken");
-  const openMenu = Boolean(anchorEl);
-  const handleclick = (e: any) => {
-    setAnchorEl(e.currentTarget);
-    console.log(e.currentTarget);
-  };
-  const closehandler = () => {
-    setAnchorEl(null);
-  };
 
-  const TypoMenu = styled(Typography)({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    cursor: "pointer",
-
-    "&:hover": {
-      color: "#008f47",
-      borderRadius: "10px",
-      fontSize: "20px",
-      borer: "none",
-    },
-  });
-  const styletypomenu = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    cursor: "pointer",
-    "&:hover": {
-      color: "#008f47",
-      borderRadius: "10px",
-      fontSize: "20px",
-      borer: "none",
-    },
-  };
   const exithandler = () => {
-    console.log("test");
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     setopenModalUser(false);
@@ -78,31 +45,11 @@ export default function Topbar() {
 
   const OpenDrawer = () => {
     setOpendrawer(true);
-    console.log(openDrwer);
   };
 
   const CloseDarwer = () => {
     setOpendrawer(false);
   };
-
-  const TypoDraw = styled(Typography)({
-    width: "90%",
-    padding: "2px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    cursor: "pointer",
-    fontWeight: "700",
-    fontSize: "20px",
-    wordSpacing: "1px",
-    color: "white",
-
-    "&:hover": {
-      color: "#dcde9f",
-      borderBottom: "1px solid white",
-      borderRadius: "7px",
-    },
-  });
   const dialoghandler = () => {
     setOpendialog(true);
   };
@@ -115,8 +62,21 @@ export default function Topbar() {
   };
   const modalUser = async () => {
     const response = await UserInfo();
-    console.log("test", response.data.data);
+
     setopenModalUser(true);
+  };
+
+  const styletypomenu = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    cursor: "pointer",
+    "&:hover": {
+      color: "#008f47",
+      borderRadius: "10px",
+      fontSize: "20px",
+      borer: "none",
+    },
   };
   return (
     <Box sx={{ flexFlow: 1 }}>
@@ -261,6 +221,11 @@ export default function Topbar() {
                         fontWeight: 700,
                         borderRadius: "25px",
                         zIndex: 999,
+                        opacity: "0.9",
+                        "&:hover": {
+                          backgroundColor: "#015366",
+                          opacity: "1",
+                        },
                       }}>
                       <Link
                         to="/signup"
@@ -274,13 +239,18 @@ export default function Topbar() {
                     </Button>
                     <Button
                       sx={{
-                        backgroundColor: "rgb(14 165 233 / 0.5)",
+                        backgroundColor: "#0ecfff",
                         padding: "7px 23px",
                         fontWeight: 700,
                         borderRadius: "0 20px 20px 0",
                         position: "relative",
                         marginLeft: "-20px",
                         textAlign: "right",
+                        opacity: "0.7",
+                        "&:hover": {
+                          backgroundColor: "#0ecfff",
+                          opacity: "1",
+                        },
                       }}>
                       <Link
                         to="/login"
@@ -374,77 +344,10 @@ export default function Topbar() {
                 alignItems: "center",
                 gap: "10px",
               }}>
-              <TypoMenu>
-                <ArrowDropDownIcon />
-                درباره ما
-              </TypoMenu>
-              <TypoMenu>
-                <ArrowDropDownIcon />
-                مقالات
-              </TypoMenu>
+              <TypoMenu>مقالات</TypoMenu>
 
-              <TypoMenu>
-                <ArrowDropDownIcon />
-                امنیت
-              </TypoMenu>
-              <TypoMenu>
-                <ArrowDropDownIcon />
-                پایتون
-              </TypoMenu>
+              <CoursesCategories />
 
-              <Typography
-                sx={styletypomenu}
-                onClick={handleclick}
-                aria-controls="basic-menu"
-                aria-haspopup="true"
-                aria-expanded={openMenu ? "true" : undefined}>
-                <ArrowDropDownIcon />
-                فرانت اند
-              </Typography>
-              {/* dropdown menu */}
-
-              <Menu
-                sx={{
-                  ".MuiMenu-paper": {
-                    width: "170px",
-                    height: "400px",
-                    display: "flex",
-                    justifyContent: "end",
-                    marginTop: "7px",
-                  },
-                  ".MuiMenu-list": {
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    alignItems: "end",
-                  },
-                  ".MuiMenuItem-root": {
-                    backgroundColor: "transparent",
-                    fontSize: "15px",
-                  },
-                  ".MuiMenuItem-root:hover": {
-                    backgroundColor: "inherit",
-                    color: "#33A765",
-                  },
-                }}
-                id="basic-menu"
-                open={openMenu}
-                anchorEl={anchorEl}
-                onClose={closehandler}
-                anchorOrigin={{
-                  vertical: "bottom", // Position where the menu will appear vertically
-                  horizontal: "center", // Position where the menu will appear horizontally
-                }}
-                transformOrigin={{ vertical: "top", horizontal: "center" }}>
-                <MenuItem>HTML آموزش</MenuItem>
-                <MenuItem>CSS آموزش</MenuItem>
-                <MenuItem>Flex Box آموزش</MenuItem>
-                <MenuItem>React آموزش</MenuItem>
-                <MenuItem>Angular آموزش</MenuItem>
-                <MenuItem>Java Script آموزش</MenuItem>
-                <MenuItem>TailWind آموزش</MenuItem>
-                <MenuItem>Material UI آموزش</MenuItem>
-              </Menu>
               <Box
                 component="img"
                 sx={{

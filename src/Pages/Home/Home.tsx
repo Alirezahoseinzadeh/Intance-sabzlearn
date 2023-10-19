@@ -17,11 +17,13 @@ export default function Home() {
           <Section_Head
             des="آخرین دوره ها"
             title="سکوی پرتاپ شما به سمت موفقیت"
+            title2="مشاهده همه دروه ها"
           />
           <Section_Content />
           <Section_Head
             des="محبوب ترین دوره ها"
             title="یادگیری و رشد توسعه فردی"
+            title2="مشاهده همه مطالب"
           />
           <Slider_Content />
         </Stack>

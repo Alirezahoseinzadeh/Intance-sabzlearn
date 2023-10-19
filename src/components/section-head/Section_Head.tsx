@@ -4,6 +4,7 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 type SectionHeadProps = {
   title: string; // Ensure that the title prop is of type string
   des: string;
+  title2: string;
 };
 export default function Section_Head(props: SectionHeadProps) {
   const styleMainStack = {
@@ -70,7 +71,7 @@ export default function Section_Head(props: SectionHeadProps) {
           <Button
             startIcon={<KeyboardDoubleArrowLeftIcon style={{ fontSize: 30 }} />}
             sx={leftBox}>
-            مشاهده همه دوه ها
+            {props.title2}
           </Button>
         </Box>
         <Stack spacing={1} sx={sec_chld_main_stck}>
