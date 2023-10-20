@@ -7,17 +7,8 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 export default function CoursesCategories() {
   const [courseCategories, setcourseCategories] = useState([]);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const openMenu = Boolean(anchorEl);
-  const [open, setOpen] = useState<boolean>(true);
-
-  const handleclick = (e: any) => {
-    setAnchorEl(e.currentTarget);
-  };
-
-  const closehandler = () => {
-    setAnchorEl(null);
-  };
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [openMenus, setOpenMenus] = useState<{ [key: number]: boolean }>({}); // Use an object to manage the state of each category's menu
 
   useEffect(() => {
     const getdata = async () => {
@@ -34,16 +25,34 @@ export default function CoursesCategories() {
   useEffect(() => {
     console.log(courseCategories);
   }, [courseCategories]);
+
+  const handleOpenMenu = (
+    categoryId: number,
+    event: React.MouseEvent<HTMLElement>
+  ) => {
+    setOpenMenus({ ...openMenus, [categoryId]: true });
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const closehandler = () => {
+    setOpenMenus({});
+  };
+
   return (
     <div style={{ display: "flex" }}>
       {courseCategories.map((item: any) => (
         <div key={item.id}>
           <TypoMenu
             key={item.id}
-            onMouseEnter={handleclick}
+            onMouseEnter={(event) => handleOpenMenu(item.id, event)}
             aria-controls="basic-menu"
             aria-haspopup="true"
-            aria-expanded={openMenu ? "true" : undefined}>
+            aria-expanded={openMenus[item.id] ? "true" : undefined}
+          >
             {item.courses.length ? <ArrowDropDownIcon /> : null}
             {item.name}
           </TypoMenu>
@@ -73,7 +82,7 @@ export default function CoursesCategories() {
                 },
               }}
               id={`basic-menu${item.id}`}
-              open={openMenu}
+              open={openMenus[item.id]}
               anchorEl={anchorEl}
               onMouseOutCapture={closehandler}
               anchorOrigin={{
@@ -83,7 +92,8 @@ export default function CoursesCategories() {
               transformOrigin={{
                 vertical: "top",
                 horizontal: "center",
-              }}>
+              }}
+            >
               {item.courses.map((course: any) => (
                 <MenuItem key={course.id}>{course.titleFa}</MenuItem>
               ))}
