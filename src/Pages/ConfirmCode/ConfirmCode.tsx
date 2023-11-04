@@ -32,17 +32,35 @@ export default function ConfirmCode() {
     }
   }, []);
 
+  // const handleInputs = (index: any, value: any) => {
+  //   const newOtpValues = [...otpValues];
+  //   newOtpValues[index] = value;
+  //   setOtpValues(newOtpValues);
+  // };
   const handleInputs = (index: any, value: any) => {
-    const newOtpValues = [...otpValues];
-    newOtpValues[index] = value;
-    setOtpValues(newOtpValues);
+    if (value.length === 1 && index < otpValues.length) {
+      setOtpValues((prevOtpValues) => {
+        const newOtpValues = [...prevOtpValues];
+        newOtpValues[index] = value;
+
+        // Move focus to the next input
+        if (index < otpValues.length - 1) {
+          const nextInput = document.getElementById(`otp-input-${index + 1}`);
+          if (nextInput) {
+            nextInput.focus();
+          }
+        }
+        return newOtpValues;
+      });
+    }
   };
 
   // submit value to api
 
   const submitHandler = async () => {
-    const isOtpComplet = otpValues.every((value) => value !== "");
+    const isOtpComplet = otpValues.every((value) => value.length === 1);
 
+    console.log(otpValues);
     if (isOtpComplet) {
       const otp = otpValues.join("");
       try {
@@ -64,17 +82,6 @@ export default function ConfirmCode() {
       return;
     }
     setOpenSnakBar(false);
-  };
-
-  const inputRef = useRef<any>(null);
-  const handleInput = (e: any) => {
-    const inputValue = e.target.value;
-    if (inputValue.length === 1) {
-      const nextInput = inputRef.current.nextElementSibling;
-      if (nextInput) {
-        nextInput.focus();
-      }
-    }
   };
 
   const btnstyle = {
@@ -175,6 +182,7 @@ export default function ConfirmCode() {
               <Input
                 value={value}
                 key={index}
+                id={`otp-input-${index}`}
                 onChange={(e) => handleInputs(index, e.target.value)}
                 defaultValue=""
                 sx={{
@@ -187,7 +195,6 @@ export default function ConfirmCode() {
                     textAlign: "center",
                   },
                 }}
-                ref={inputRef}
               />
             ))}
           </Box>

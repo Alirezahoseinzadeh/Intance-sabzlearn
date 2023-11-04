@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Container,
@@ -7,8 +7,13 @@ import {
   Typography,
   Button,
   Grid,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  ListItemSecondaryAction,
+  Collapse,
 } from "@mui/material";
-
 import Topbar from "../../components/Topbar/Topbar";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import CottageOutlinedIcon from "@mui/icons-material/CottageOutlined";
@@ -16,12 +21,17 @@ import ReactPlayer from "react-player";
 import GppMaybeOutlinedIcon from "@mui/icons-material/GppMaybeOutlined";
 import AccessAlarmOutlinedIcon from "@mui/icons-material/AccessAlarmOutlined";
 import GroupAddOutlinedIcon from "@mui/icons-material/GroupAddOutlined";
-import StarBorderPurple500RoundedIcon from "@mui/icons-material/StarBorderPurple500Rounded";
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import LocalMallRoundedIcon from "@mui/icons-material/LocalMallRounded";
 import SlowMotionVideoRoundedIcon from "@mui/icons-material/SlowMotionVideoRounded";
-// import video from "../../../public/asist";
+import ShortLink from "./componentsLittle/ShortLink";
+import InfoMaster from "./componentsLittle/InfoMaster";
+import PercentCompleteCourse from "./componentsLittle/PercentCompleteCourse";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 export default function DetailCourse() {
+  const [open, setOpen] = useState(false);
   return (
     <Box>
       <Topbar />
@@ -176,81 +186,13 @@ export default function DetailCourse() {
               <Stack
                 sx={{
                   flex: "1",
-                  backgroundColor: "white",
-                  borderRadius: "10px",
-                }}>
-                <Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      padding: "20px",
-                      gap: "20px",
-                      borderRadius: "11px",
-                    }}>
-                    {/* first */}
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-around",
-                        alignItems: "center",
-                        backgroundColor: "#e5e7eb",
-                        flex: "1",
-                        padding: "25px 5px",
-                        borderRadius: "10px",
-                      }}>
-                      <Box>
-                        <Typography
-                          sx={{ fontWeight: "600", fontSize: "20px" }}>
-                          5.0
-                        </Typography>
-                        <Typography sx={{ fontSize: "14px" }}>رضایت</Typography>
-                      </Box>
-                      <StarBorderPurple500RoundedIcon
-                        sx={{ fontSize: "40px", color: "#faae20" }}
-                      />
-                    </Box>
-                    {/* second */}
-
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "space-around",
-                        alignItems: "center",
-                        backgroundColor: "#e5e7eb",
-                        flex: "1",
-                        padding: "25px 5px",
-                        borderRadius: "10px",
-                      }}>
-                      <Box>
-                        <Typography
-                          sx={{ fontWeight: "600", fontSize: "18px" }}>
-                          1122
-                        </Typography>
-                        <Typography sx={{ fontSize: "14px" }}>
-                          دانشجو
-                        </Typography>
-                      </Box>
-                      <GroupAddOutlinedIcon
-                        sx={{ fontSize: "40px", color: "#00d084" }}
-                      />
-                    </Box>
-                  </Box>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: " 5px 20px",
-                  }}>
-                  <Typography sx={{ fontSize: "20px" }}>100%</Typography>
-                  <Typography sx={{ fontSize: "18px" }}>
-                    درصد تکمیل دوره
-                  </Typography>
-                </Box>
-                <Box></Box>
+                  backgroundColor: "inherit",
+                  marginBottom: "10px",
+                }}
+                spacing={4}>
+                <PercentCompleteCourse />
+                <InfoMaster />
+                <ShortLink />
               </Stack>
               <Stack sx={{ flex: "2" }}>
                 <Grid container spacing={3}>
@@ -445,6 +387,115 @@ export default function DetailCourse() {
                     </Box>
                   </Grid>
                 </Grid>
+                <Stack
+                  spacing={2}
+                  sx={{
+                    marginTop: "20px",
+                    backgroundColor: "white",
+                    padding: "10px 14px",
+                    borderRadius: "10px",
+                  }}>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}>
+                    <Typography>03:58</Typography>
+                    <Typography
+                      sx={{
+                        fontSize: " 1.675rem",
+                        fontWeight: "700",
+                        fontStyle: "oblique",
+                      }}>
+                      سرفصل های دوره
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <List
+                      sx={{ backgroundColor: "#ebeded", borderRadius: "10px" }}>
+                      <ListItem>
+                        <ListItemButton
+                          onClick={() => setOpen(!open)}
+                          sx={{
+                            padding: "13px 3px",
+                            backgroundColor: "white",
+                            borderRadius: "10px",
+                            "&:hover": {
+                              backgroundColor: "white",
+                            },
+                          }}>
+                          {open ? (
+                            <ArrowDropUpIcon sx={{ fontSize: "30px" }} />
+                          ) : (
+                            <ArrowDropDown sx={{ fontSize: "30px" }} />
+                          )}
+                          <ListItemSecondaryAction>
+                            <ListItemText
+                              primary="فصل صفرم : مقدمات "
+                              sx={{
+                                ".MuiListItemText-primary": {
+                                  fontSize: "20px",
+                                  fontWeight: "500",
+                                },
+                              }}
+                            />
+                          </ListItemSecondaryAction>
+                        </ListItemButton>
+                      </ListItem>
+                      <Collapse in={open}>
+                        <ListItem>
+                          <ListItemButton
+                            sx={{
+                              backgroundColor: "white",
+                              borderRadius: "10px",
+                              "&:hover": {
+                                backgroundColor: "white",
+                              },
+                            }}>
+                            <Box
+                              sx={{
+                                display: "flex",
+                                alignItems: "Center",
+                                gap: "10px",
+                              }}>
+                              <AccessTimeIcon />
+                              20:01
+                            </Box>
+                            <ListItemSecondaryAction>
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                  gap: "10px",
+                                }}>
+                                <Typography
+                                  sx={{
+                                    color: "green",
+                                    fontWeight: "500",
+                                    fontSize: "18px",
+                                  }}>
+                                  معرفی دوره مصور سازی با پایتون
+                                </Typography>
+                                <Box
+                                  sx={{
+                                    width: "25px",
+                                    height: "25px",
+                                    background: "green",
+                                    borderRadius: "50%",
+                                    textAlign: "center",
+                                    color: "white",
+                                  }}>
+                                  1
+                                </Box>
+                              </Box>
+                            </ListItemSecondaryAction>
+                          </ListItemButton>
+                        </ListItem>
+                      </Collapse>
+                    </List>
+                  </Box>
+                </Stack>
               </Stack>
             </Box>
           </Stack>
