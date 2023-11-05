@@ -39,7 +39,6 @@ function InfoCard({ title, value, icon }: InfoCardProps) {
     </Grid>
   );
 }
-
 export default function InfoCourses() {
   return (
     <>

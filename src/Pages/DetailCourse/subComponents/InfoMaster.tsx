@@ -3,7 +3,13 @@ import { Stack, Avatar, Box, Typography } from "@mui/material";
 export default function InfoMaster() {
   return (
     <>
-      <Stack sx={{ backgroundColor: "white", borderRadius: "10px" }}>
+      <Stack
+        sx={{
+          backgroundColor: "white",
+          borderRadius: "10px",
+          boxShadow:
+            "0 1px 2px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.07), 0 4px 8px rgba(0,0,0,0.07), 0 8px 16px rgba(0,0,0,0.07), 0 16px 32px rgba(0,0,0,0.07), 0 32px 64px rgba(0,0,0,0.07)",
+        }}>
         <Box sx={{ margin: "0 auto" }}>
           <Avatar
             src="image/master.png"

@@ -11,11 +11,11 @@ import Topbar from "../../components/Topbar/Topbar";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import CottageOutlinedIcon from "@mui/icons-material/CottageOutlined";
 import ReactPlayer from "react-player";
-import ShortLink from "./componentsLittle/ShortLink";
-import InfoMaster from "./componentsLittle/InfoMaster";
-import PercentCompleteCourse from "./componentsLittle/PercentCompleteCourse";
-import TitleOfCourses from "./componentsLittle/TitleOfCourses";
-import InfoCourses from "./componentsLittle/InfoCourses";
+import ShortLink from "./subComponents/ShortLink";
+import InfoMaster from "./subComponents/InfoMaster";
+import PercentCompleteCourse from "./subComponents/PercentCompleteCourse";
+import TitleOfCourses from "./subComponents/TitleOfCourses";
+import InfoCourses from "./subComponents/InfoCourses";
 
 export default function DetailCourse() {
   return (
@@ -165,7 +165,7 @@ export default function DetailCourse() {
             <Box
               sx={{
                 display: "flex",
-                alignItems: "Center",
+                alignItems: "start",
                 gap: "20px",
                 paddingTop: "30px",
               }}>
@@ -174,6 +174,8 @@ export default function DetailCourse() {
                   flex: "1",
                   backgroundColor: "inherit",
                   marginBottom: "10px",
+                  position: "sticky",
+                  top: "10px",
                 }}
                 spacing={4}>
                 <PercentCompleteCourse />
