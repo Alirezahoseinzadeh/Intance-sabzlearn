@@ -31,7 +31,6 @@ const topenCollpas = (index)=>{
  setTasks(UpdateTask)
 }
 
-
   return (
     <>
       <Stack
@@ -103,7 +102,6 @@ const topenCollpas = (index)=>{
                   </ListItem>
                     </>
                   ))}
-                 
                 </Collapse>
               </>
             ))}

@@ -31,3 +31,29 @@ export const TypoMenu = styled(Typography)({
       borderRadius: "7px",
     },
   });
+
+  export const StyleModalSearch = {
+    position: "absolute",
+    top: "70px",
+    left: "175px",
+    zIndex: "999",
+    width: "300px",
+    "& .MuiInputLabel-root": {
+      fontSize: "15px",
+      color: "whitesmoke",
+      textAlign: "center",
+    },
+    "& fieldset": {
+      borderRadius: "19px",
+    },
+
+    "& label.Mui-focused": {
+      fontSize: "14px",
+      color: "whitesmoke",
+    },
+    "& .MuiOutlinedInput-root.Mui-focused": {
+      "& > fieldset": {
+        border: "none",
+      },
+    },
+  };

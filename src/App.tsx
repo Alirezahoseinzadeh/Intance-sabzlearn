@@ -27,7 +27,7 @@ export default function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Box>
-        {/* <Routes>
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login/*" element={<Login />}></Route>
           <Route path="/loginemail" element={<LogInEmail />} />
@@ -35,8 +35,8 @@ export default function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/userinfo" element={<InfoUser />} />
           <Route path="/confirmcode" element={<ConfirmCode />} />
-        </Routes> */}
-        <DetailCourse />
+        </Routes>
+        {/* <DetailCourse /> */}
       </Box>
     </ThemeProvider>
   );

@@ -29,6 +29,7 @@ import { Link } from "react-router-dom";
 import { GetCourseCategories, UserInfo } from "../../api/ApiService";
 import { TypoDraw, TypoMenu } from "./Topbar.styles";
 import CoursesCategories from "./CoursesCategories";
+import { StyleModalSearch } from "./Topbar.styles";
 export default function Topbar() {
   const [openDrwer, setOpendrawer] = useState(false);
   const [opendialog, setOpendialog] = useState<boolean>(false);
@@ -78,6 +79,7 @@ export default function Topbar() {
       borer: "none",
     },
   };
+
   return (
     <Box sx={{ flexFlow: 1 }}>
       <AppBar
@@ -297,33 +299,7 @@ export default function Topbar() {
                     }}
                     defaultValue=""
                     label="جستجو در بین دوره ها"
-                    sx={{
-                      position: "absolute",
-                      top: "70px",
-                      left: "175px",
-                      zIndex: "999",
-                      width: "300px",
-                      "& .MuiInputLabel-root": {
-                        fontSize: "15px",
-                        color: "whitesmoke",
-                        textAlign: "center",
-                      },
-                      "& fieldset": {
-                        // borderColor: "white",
-                        borderRadius: "19px",
-                      },
-
-                      "& label.Mui-focused": {
-                        fontSize: "14px",
-                        color: "whitesmoke", // Adjust the font size as needed
-                      },
-                      "& .MuiOutlinedInput-root.Mui-focused": {
-                        "& > fieldset": {
-                          // borderColor: "whitesmoke",
-                          border: "none",
-                        },
-                      },
-                    }}
+                    sx={StyleModalSearch}
                   />
                 </Box>
               </Modal>
