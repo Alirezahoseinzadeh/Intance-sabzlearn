@@ -26,3 +26,27 @@ export const StyleMainStack = {
     gap: "10px",
   }
   
+
+  export const StyleTitleCourses ={
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  }
+
+  export const StyleListItemButton ={
+    padding: "13px 3px",
+    backgroundColor: "#c6ecec",
+    borderRadius: "10px",
+    "&:hover": {
+      backgroundColor: "white",
+    },
+  }
+
+  export const StyleListItemButtonCollaps ={
+    backgroundColor: "white",
+     borderRadius: "10px",
+       padding: "15px 10px",
+     "&:hover": {
+       backgroundColor: "white",
+  },
+  }

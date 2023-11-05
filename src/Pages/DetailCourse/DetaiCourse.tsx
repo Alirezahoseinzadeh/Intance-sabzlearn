@@ -14,7 +14,7 @@ import ReactPlayer from "react-player";
 import ShortLink from "./subComponents/ShortLink";
 import InfoMaster from "./subComponents/InfoMaster";
 import PercentCompleteCourse from "./subComponents/PercentCompleteCourse";
-import TitleOfCourses from "./subComponents/TitleOfCourses";
+import TitleOfCourses from "./subComponents/TitleOfCourses/TitleOfCourses";
 import InfoCourses from "./subComponents/InfoCourses";
 
 export default function DetailCourse() {
