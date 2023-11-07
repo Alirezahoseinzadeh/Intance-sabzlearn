@@ -20,7 +20,7 @@ import { StyleTitleCourses } from "./TilteOfCourses.Style";
 import { StyleListItemButton } from "./TilteOfCourses.Style";
 import { StyleListItemButtonCollaps } from "./TilteOfCourses.Style";
 import { BoxSubTimeAndDescStyle } from "./TilteOfCourses.Style";
-import Taks from "./TitleOfCoursesAsests";
+import Taks from "./TitleOfCoursesAssets";
 export default function TitleOfCourses() {
   const items = Taks
   const [tasks, setTasks] = useState(items);
@@ -77,7 +77,7 @@ const topenCollpas = (index)=>{
                 <Collapse in={item.open}>
                   {item.sublist.map((sublist)=>(
                     <>
-                     <ListItem>
+                     <ListItem key={sublist.id}>
                     <ListItemButton
                       sx={StyleListItemButtonCollaps}>
                       <Box

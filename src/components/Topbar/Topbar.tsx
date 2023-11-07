@@ -6,15 +6,12 @@ import {
   Typography,
   Button,
   Stack,
-  styled,
-  Menu,
-  MenuItem,
   Drawer,
   TextField,
   Modal,
   Divider,
 } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ListIcon from "@mui/icons-material/List";
@@ -26,11 +23,15 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { Link } from "react-router-dom";
-import { GetCourseCategories, UserInfo } from "../../api/ApiService";
+import { UserInfo } from "../../api/ApiService";
 import { TypoDraw, TypoMenu } from "./Topbar.styles";
 import CoursesCategories from "./CoursesCategories";
 import { StyleModalSearch } from "./Topbar.styles";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { useSelector } from "react-redux";
 export default function Topbar() {
+  const products = useSelector((state: any) => state.products);
+
   const [openDrwer, setOpendrawer] = useState(false);
   const [opendialog, setOpendialog] = useState<boolean>(false);
 
@@ -65,19 +66,6 @@ export default function Topbar() {
     const response = await UserInfo();
 
     setopenModalUser(true);
-  };
-
-  const styletypomenu = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    cursor: "pointer",
-    "&:hover": {
-      color: "#008f47",
-      borderRadius: "10px",
-      fontSize: "20px",
-      borer: "none",
-    },
   };
 
   return (
@@ -283,6 +271,36 @@ export default function Topbar() {
                     fontSize: "35px",
                   }}
                 />
+              </IconButton>
+
+              <IconButton
+                aria-label="delete"
+                sx={{ position: "relative" }}
+                onClick={dialoghandler}>
+                <ShoppingBagIcon
+                  sx={{
+                    fontSize: "35px",
+                    color: "green",
+                  }}
+                />
+                <span
+                  style={{
+                    color: "white",
+                    position: "absolute",
+                    top: "-1px",
+                    left: "30px",
+                    fontSize: "17px",
+                    backgroundColor: "red",
+                    width: "23px",
+                    height: "23px",
+                    borderRadius: "50%",
+                    fontWeight: "700",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}>
+                  {products.length}
+                </span>
               </IconButton>
 
               <Modal open={opendialog} onClose={closeModal}>

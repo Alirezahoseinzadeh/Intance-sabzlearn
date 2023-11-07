@@ -22,9 +22,7 @@ export default function CoursesCategories() {
     getdata();
   }, []);
 
-  useEffect(() => {
-    console.log(courseCategories);
-  }, [courseCategories]);
+  useEffect(() => {}, [courseCategories]);
 
   const handleOpenMenu = (
     categoryId: number,
@@ -51,8 +49,7 @@ export default function CoursesCategories() {
             onMouseEnter={(event) => handleOpenMenu(item.id, event)}
             aria-controls="basic-menu"
             aria-haspopup="true"
-            aria-expanded={openMenus[item.id] ? "true" : undefined}
-          >
+            aria-expanded={openMenus[item.id] ? "true" : undefined}>
             {item.courses.length ? <ArrowDropDownIcon /> : null}
             {item.name}
           </TypoMenu>
@@ -92,8 +89,7 @@ export default function CoursesCategories() {
               transformOrigin={{
                 vertical: "top",
                 horizontal: "center",
-              }}
-            >
+              }}>
               {item.courses.map((course: any) => (
                 <MenuItem key={course.id}>{course.titleFa}</MenuItem>
               ))}

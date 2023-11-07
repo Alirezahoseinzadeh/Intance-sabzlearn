@@ -12,13 +12,20 @@ import {
 import React from "react";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import Products from "./Utils";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToShop } from "../../store/CreateSlice";
 export default function Section_Content() {
   const Product = Products;
+  const dispatch = useDispatch();
+  const getCoursesInfo = (item: any) => {
+    dispatch(addToShop(item));
+  };
 
   return (
     <Container maxWidth="md">
       <Grid container spacing={2} sx={{ marginTop: "10px" }}>
-        {Products.map((item) => (
+        {Product.map((item) => (
           <Grid key={item.id} item md={4} sm={6} xs={12}>
             <Card sx={{ borderRadius: "10px" }}>
               <CardMedia
@@ -45,7 +52,15 @@ export default function Section_Content() {
                     fontWeight: "900",
                     marginTop: "10px",
                   }}>
-                  {item.title}
+                  <Link
+                    onClick={() => getCoursesInfo(item)}
+                    to="/detailcourses"
+                    style={{
+                      textDecoration: "none",
+                      color: "black",
+                    }}>
+                    {item.title}
+                  </Link>
                   <span style={{ color: "#008f47" }}>2023</span>
                 </Typography>
                 <hr />
