@@ -14,7 +14,13 @@ const slice = createSlice({
       }
     },
     addToBagShop: (state, action) => {
-      state.push(action.payload);
+      const { id } = action.payload;
+      const Result = state.every((pro) => {
+        return pro.id !== id;
+      });
+      if (Result) {
+        state.push(action.payload);
+      }
     },
   },
 });

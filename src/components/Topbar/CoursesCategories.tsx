@@ -83,8 +83,8 @@ export default function CoursesCategories() {
               anchorEl={anchorEl}
               onMouseOutCapture={closehandler}
               anchorOrigin={{
-                vertical: "bottom", // Position where the menu will appear vertically
-                horizontal: "center", // Position where the menu will appear horizontally
+                vertical: "bottom",
+                horizontal: "center",
               }}
               transformOrigin={{
                 vertical: "top",

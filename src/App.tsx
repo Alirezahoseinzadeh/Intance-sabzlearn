@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box } from "@mui/material";
 import "./App.css";
 import Login from "./Pages/Log_In";
@@ -9,7 +9,6 @@ import Roles from "./Pages/Roles";
 import SignUp from "./Pages/SignUp";
 import InfoUser from "./Pages/InfoUser";
 
-import { ThemeProvider, createTheme, useTheme } from "@mui/material/styles";
 import DetailCourse from "./Pages/DetailCourse/DetaiCourse";
 import ConfirmCode from "./Pages/ConfirmCode/ConfirmCode";
 
@@ -18,13 +17,14 @@ export default function App() {
     <Box>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<DetailCourse />} />
         <Route path="/login/*" element={<Login />}></Route>
         <Route path="/loginemail" element={<LogInEmail />} />
         <Route path="role" element={<Roles />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/userinfo" element={<InfoUser />} />
         <Route path="/confirmcode" element={<ConfirmCode />} />
-        <Route path="/detailcourses" element={<DetailCourse />} />
+        {/* <Route path="/detailcourses" element={<DetailCourse />} /> */}
       </Routes>
     </Box>
   );

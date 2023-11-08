@@ -13,14 +13,9 @@ import React from "react";
 import PersonAddAltOutlinedIcon from "@mui/icons-material/PersonAddAltOutlined";
 import Products from "./Utils";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToShop } from "../../store/CreateSlice";
+
 export default function Section_Content() {
   const Product = Products;
-  const dispatch = useDispatch();
-  const getCoursesInfo = (item: any) => {
-    dispatch(addToShop(item));
-  };
 
   return (
     <Container maxWidth="md">
@@ -53,8 +48,8 @@ export default function Section_Content() {
                     marginTop: "10px",
                   }}>
                   <Link
-                    onClick={() => getCoursesInfo(item)}
-                    to="/detailcourses"
+                    // onClick={() => getCoursesInfo(item)}
+                    to={`/${item.id}`}
                     style={{
                       textDecoration: "none",
                       color: "black",

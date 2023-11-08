@@ -17,8 +17,10 @@ export const StyleMainStack = {
     height: "25px",
     background: "red",
     borderRadius: "50%",
-    textAlign: "center",
     color: "white",
+    display :"flex",
+    alignItems: "center",
+    justifyContent: "center"
   }
   export const BoxSubTimeAndDescStyle= {
     display: "flex",

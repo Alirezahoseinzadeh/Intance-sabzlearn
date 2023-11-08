@@ -57,3 +57,61 @@ export const TypoMenu = styled(Typography)({
       },
     },
   };
+
+
+ export const AppbarStyle = {
+    backgroundColor: "#ecf5ed",
+    color: "#000000",
+  };
+
+export const ToolbalrStyle = {
+    display: "flex",
+    justifyContent: "space-between",
+  };
+
+  export const ModalUserInfoStyle = {
+    width: "300px",
+    height: "260px",
+    backgroundColor: "white",
+    position: "absolute",
+    top: "60px",
+    left: "20px",
+    display: "flex",
+    flexDirection: "column",
+    padding: "20px",
+    borderRadius: "11px",
+  };
+
+export const ButtonStyleForPishkhan = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "end",
+    columnGap: "10px",
+    fontSize: "18px",
+    color: "black",
+
+    "&:hover": {
+      backgroundColor: "#f9f9f9",
+    },
+  };
+
+export const ButtonStyleForExit = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "end",
+  columnGap: "10px",
+  color: "black",
+  fontSize: "20px",
+  marginTop: "15px",
+  "&:hover": {
+    backgroundColor: "#f9f9f9",
+  },
+};
+
+export const StyleForLogoInAppbar = {
+  width: "104px",
+  height: "60px",
+  padding: "0 5px",
+  marginLeft: "10px",
+  borderLeft: "1px solid black",
+};

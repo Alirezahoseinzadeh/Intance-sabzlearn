@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactPlayer from "react-player";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import { Box, Typography, Button } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import Products from "../../../components/Section_content/Utils";
 import { addToBagShop } from "../../../store/CreateSlice";
 export default function HeadInfoCourses() {
+  const [ProductData, setProductsData] = useState(Products);
   const dispatch = useDispatch();
-  const products = useSelector((state: any) => state.products);
-  const addToBagForShop = (products: any) => {
-    dispatch(addToBagShop(products));
+  let params = useParams();
+
+  const product: any = ProductData.find((item: any) => item.id == params.id);
+  console.log(product);
+
+  const addToBagShops = (product: any) => {
+    dispatch(addToBagShop(product));
   };
+
   return (
     <>
       <Box>
@@ -33,7 +41,7 @@ export default function HeadInfoCourses() {
         }}>
         <Typography
           sx={{ fontSize: "20px", fontWeight: "600", direction: "rtl" }}>
-          {products[0] ? `${products[0].title}` : "no"}
+          {product ? product.title : ""}
         </Typography>
         <Typography
           sx={{
@@ -57,7 +65,7 @@ export default function HeadInfoCourses() {
           }}>
           <Typography sx={{ direction: "rtl" }}> 4,350,000 تومان</Typography>
           <Button
-            onClick={() => addToBagForShop(products[0])}
+            onClick={() => addToBagShops(product)}
             variant="contained"
             endIcon={<VerifiedUserIcon />}
             sx={{

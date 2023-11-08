@@ -1,6 +1,16 @@
 import React from "react";
 import { Stack, Avatar, Box, Typography } from "@mui/material";
 export default function InfoMaster() {
+  const StyleInfoMaster = {
+    textAlign: "justify",
+    marginTop: "7px",
+    opacity: "0.9",
+    fontSize: "16px",
+    padding: "3px 18px",
+    color: "gray",
+    paddingBottom: "10px",
+    direction: "rtl",
+  };
   return (
     <>
       <Stack
@@ -34,16 +44,7 @@ export default function InfoMaster() {
           }}>
           مدرس دوره
         </Typography>
-        <Typography
-          sx={{
-            textAlign: "justify",
-            marginTop: "7px",
-            opacity: "0.9",
-            fontSize: "16px",
-            padding: "3px 18px",
-            color: "gray",
-            paddingBottom: "10px",
-          }}>
+        <Typography sx={StyleInfoMaster}>
           تقریبا 10 ساله در زمینه برنامه نویسی فعال هستم، 5 سال پیش اولین شرکت
           خودم رو تاسیس کردم، 1 سال پیش اولین فروشگاه اینترنتی خودم رو توسعه
           دادم. عاشق زبان برنامه نویسی پایتون هستم و در کنار پایتون زبان های

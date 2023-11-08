@@ -3,32 +3,26 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
-  Button,
   Stack,
   Drawer,
   TextField,
   Modal,
-  Divider,
 } from "@mui/material";
 import React, { useState } from "react";
 import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ListIcon from "@mui/icons-material/List";
 import Person3Icon from "@mui/icons-material/Person3";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import WalletOutlinedIcon from "@mui/icons-material/WalletOutlined";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
-import { Link } from "react-router-dom";
 import { UserInfo } from "../../api/ApiService";
-import { TypoDraw, TypoMenu } from "./Topbar.styles";
+import { TypoMenu } from "./Topbar.styles";
 import CoursesCategories from "./CoursesCategories";
-import { StyleModalSearch } from "./Topbar.styles";
+import { StyleModalSearch, StyleForLogoInAppbar } from "./Topbar.styles";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { useSelector } from "react-redux";
+import { AppbarStyle, ToolbalrStyle } from "./Topbar.styles";
+import ModalUser from "./ModalUser";
+import LoginOrSignInButton from "./LoginOrSignInButton";
+import DrawerComponent from "./DrawerComponent";
 export default function Topbar() {
   const products = useSelector((state: any) => state.products);
 
@@ -64,20 +58,13 @@ export default function Topbar() {
   };
   const modalUser = async () => {
     const response = await UserInfo();
-
     setopenModalUser(true);
   };
 
   return (
     <Box sx={{ flexFlow: 1 }}>
-      <AppBar
-        position="static"
-        sx={{ backgroundColor: "#ecf5ed", color: "#000000" }}>
-        <Toolbar
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}>
+      <AppBar position="static" sx={AppbarStyle}>
+        <Toolbar sx={ToolbalrStyle}>
           <Box sx={{ height: "80px", display: "flex", alignItems: "center" }}>
             <Stack
               direction="row"
@@ -91,167 +78,12 @@ export default function Topbar() {
                     </IconButton>
 
                     <Modal open={openModalUser} onClose={closeModalUser}>
-                      <Box
-                        sx={{
-                          width: "300px",
-                          height: "290px",
-                          backgroundColor: "white",
-                          position: "absolute",
-                          top: "60px",
-                          left: "20px",
-                          display: "flex",
-                          flexDirection: "column",
-                          padding: "20px",
-                          borderRadius: "11px",
-                        }}>
-                        <Box
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "end",
-                            columnGap: "20px",
-                            marginBottom: "10px",
-                          }}>
-                          <Box>
-                            <Typography
-                              sx={{
-                                fontSize: "18px",
-                              }}>
-                              علیرضا حسین زاده
-                            </Typography>
-                            <Typography
-                              sx={{
-                                color: "blue",
-                                cursor: "pointer",
-                                fontSize: "19px",
-                              }}>
-                              موجودی : 0 تومان
-                            </Typography>
-                          </Box>
-                          <PersonOutlineIcon sx={{ fontSize: "45px" }} />
-                        </Box>
-                        <Divider />
-                        <Stack
-                          sx={{ marginTop: "8px", marginBottom: "8px" }}
-                          spacing={1}>
-                          <Button
-                            sx={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "end",
-                              columnGap: "10px",
-                              fontSize: "18px",
-                              color: "black",
-
-                              "&:hover": {
-                                backgroundColor: "#f9f9f9",
-                              },
-                            }}
-                            endIcon={
-                              <HomeOutlinedIcon style={{ fontSize: "32px" }} />
-                            }>
-                            <Link
-                              to="/userinfo"
-                              style={{
-                                textDecoration: "none",
-                                color: "black",
-                              }}>
-                              پیشخوان
-                            </Link>
-                          </Button>
-                          <Button
-                            sx={{
-                              display: "flex",
-                              alignItems: "center",
-                              justifyContent: "end",
-                              columnGap: "10px",
-                              color: "black",
-                              fontSize: "18px",
-                              "&:hover": {
-                                backgroundColor: "#f9f9f9",
-                              },
-                            }}
-                            endIcon={
-                              <WalletOutlinedIcon
-                                style={{ fontSize: "30px" }}
-                              />
-                            }>
-                            دوره های من
-                          </Button>
-                        </Stack>
-                        <Divider />
-                        <Button
-                          onClick={exithandler}
-                          sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "end",
-                            columnGap: "10px",
-                            color: "black",
-                            fontSize: "20px",
-                            marginTop: "15px",
-                            "&:hover": {
-                              backgroundColor: "#f9f9f9",
-                            },
-                          }}
-                          endIcon={
-                            <LogoutOutlinedIcon style={{ fontSize: "30px" }} />
-                          }>
-                          خروج
-                        </Button>
-                      </Box>
+                      <ModalUser clickhandle={exithandler} />
                     </Modal>
                   </>
                 ) : (
                   <>
-                    <Button
-                      sx={{
-                        backgroundColor: "#015366",
-                        padding: "7px 20px",
-                        fontWeight: 700,
-                        borderRadius: "25px",
-                        zIndex: 999,
-                        opacity: "0.9",
-                        "&:hover": {
-                          backgroundColor: "#015366",
-                          opacity: "1",
-                        },
-                      }}>
-                      <Link
-                        to="/signup"
-                        style={{
-                          textDecoration: "none",
-                          color: "white",
-                          fontSize: "15px",
-                        }}>
-                        عضویت
-                      </Link>
-                    </Button>
-                    <Button
-                      sx={{
-                        backgroundColor: "#0ecfff",
-                        padding: "7px 23px",
-                        fontWeight: 700,
-                        borderRadius: "0 20px 20px 0",
-                        position: "relative",
-                        marginLeft: "-20px",
-                        textAlign: "right",
-                        opacity: "0.7",
-                        "&:hover": {
-                          backgroundColor: "#0ecfff",
-                          opacity: "1",
-                        },
-                      }}>
-                      <Link
-                        to="/login"
-                        style={{
-                          textDecoration: "none",
-                          color: "white",
-                          fontSize: "15px",
-                        }}>
-                        ورود
-                      </Link>
-                    </Button>
+                    <LoginOrSignInButton />
                   </>
                 )}
               </Box>
@@ -262,10 +94,7 @@ export default function Topbar() {
                   }}
                 />
               </IconButton>
-              <IconButton
-                aria-label="delete"
-                sx={{ position: "relative" }}
-                onClick={dialoghandler}>
+              <IconButton aria-label="delete" onClick={dialoghandler}>
                 <SearchOutlinedIcon
                   sx={{
                     fontSize: "35px",
@@ -273,34 +102,35 @@ export default function Topbar() {
                 />
               </IconButton>
 
-              <IconButton
-                aria-label="delete"
-                sx={{ position: "relative" }}
-                onClick={dialoghandler}>
+              <IconButton aria-label="delete" sx={{ position: "relative" }}>
                 <ShoppingBagIcon
                   sx={{
                     fontSize: "35px",
-                    color: "green",
+                    color: "#61615a",
                   }}
                 />
-                <span
-                  style={{
-                    color: "white",
-                    position: "absolute",
-                    top: "-1px",
-                    left: "30px",
-                    fontSize: "17px",
-                    backgroundColor: "red",
-                    width: "23px",
-                    height: "23px",
-                    borderRadius: "50%",
-                    fontWeight: "700",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}>
-                  {products.length}
-                </span>
+                {products.length > 0 ? (
+                  <span
+                    style={{
+                      color: "white",
+                      position: "absolute",
+                      top: "-1px",
+                      left: "30px",
+                      fontSize: "17px",
+                      backgroundColor: "#00d084",
+                      width: "23px",
+                      height: "23px",
+                      borderRadius: "50%",
+                      fontWeight: "700",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}>
+                    {products.length}
+                  </span>
+                ) : (
+                  ""
+                )}
               </IconButton>
 
               <Modal open={opendialog} onClose={closeModal}>
@@ -342,17 +172,7 @@ export default function Topbar() {
 
               <CoursesCategories />
 
-              <Box
-                component="img"
-                sx={{
-                  width: "104px",
-                  height: "60px",
-                  padding: "0 5px",
-                  marginLeft: "10px",
-                  borderLeft: "1px solid black",
-                }}
-                src="logo.webp"
-              />
+              <Box component="img" sx={StyleForLogoInAppbar} src="logo.webp" />
             </Stack>
           </Box>
           <Box
@@ -384,37 +204,7 @@ export default function Topbar() {
             onClose={CloseDarwer}
             anchor="right"
             open={openDrwer}>
-            <Box>
-              <Stack
-                sx={{
-                  marginTop: "30px",
-                  display: "flex",
-                  flexDirection: "column-reverse",
-                  gap: "40px",
-                  alignItems: "center",
-                }}>
-                <TypoDraw>
-                  <ArrowDropDownIcon />
-                  درباره ما
-                </TypoDraw>
-                <TypoDraw>
-                  <ArrowDropDownIcon />
-                  مقالات
-                </TypoDraw>
-                <TypoDraw>
-                  <ArrowDropDownIcon />
-                  امنیت
-                </TypoDraw>
-                <TypoDraw>
-                  <ArrowDropDownIcon />
-                  پایتون
-                </TypoDraw>{" "}
-                <TypoDraw>
-                  <ArrowDropDownIcon />
-                  فرانت اند
-                </TypoDraw>
-              </Stack>
-            </Box>
+            <DrawerComponent />
           </Drawer>
         </Toolbar>
       </AppBar>
