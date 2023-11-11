@@ -8,9 +8,9 @@ import LogInEmail from "./Pages/LogInEmail";
 import Roles from "./Pages/Roles";
 import SignUp from "./Pages/SignUp";
 import InfoUser from "./Pages/InfoUser";
-
 import DetailCourse from "./Pages/DetailCourse/DetaiCourse";
 import ConfirmCode from "./Pages/ConfirmCode/ConfirmCode";
+import Orders from "./Pages/oreders/Orders";
 
 export default function App() {
   return (
@@ -24,8 +24,9 @@ export default function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/userinfo" element={<InfoUser />} />
         <Route path="/confirmcode" element={<ConfirmCode />} />
-        {/* <Route path="/detailcourses" element={<DetailCourse />} /> */}
+        <Route path="/orders" element={<Orders />} />
       </Routes>
+      {/* <Orders /> */}
     </Box>
   );
 }

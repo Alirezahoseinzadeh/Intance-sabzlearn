@@ -46,7 +46,7 @@ export default function CoursesCategories() {
         <div key={item.id}>
           <TypoMenu
             key={item.id}
-            onMouseEnter={(event) => handleOpenMenu(item.id, event)}
+            onMouseEnter={(event: any) => handleOpenMenu(item.id, event)}
             aria-controls="basic-menu"
             aria-haspopup="true"
             aria-expanded={openMenus[item.id] ? "true" : undefined}>

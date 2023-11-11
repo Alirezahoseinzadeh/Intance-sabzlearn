@@ -23,6 +23,7 @@ import { AppbarStyle, ToolbalrStyle } from "./Topbar.styles";
 import ModalUser from "./ModalUser";
 import LoginOrSignInButton from "./LoginOrSignInButton";
 import DrawerComponent from "./DrawerComponent";
+import { Link } from "react-router-dom";
 export default function Topbar() {
   const products = useSelector((state: any) => state.products);
 
@@ -103,12 +104,22 @@ export default function Topbar() {
               </IconButton>
 
               <IconButton aria-label="delete" sx={{ position: "relative" }}>
-                <ShoppingBagIcon
-                  sx={{
-                    fontSize: "35px",
-                    color: "#61615a",
-                  }}
-                />
+                <Link
+                  to="/orders"
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}>
+                  <ShoppingBagIcon
+                    sx={{
+                      fontSize: "35px",
+                      color: "#61615a",
+                    }}
+                  />
+                </Link>
                 {products.length > 0 ? (
                   <span
                     style={{

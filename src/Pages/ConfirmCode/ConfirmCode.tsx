@@ -183,7 +183,7 @@ export default function ConfirmCode() {
                 value={value}
                 key={index}
                 id={`otp-input-${index}`}
-                onChange={(e) => handleInputs(index, e.target.value)}
+                onChange={(e: any) => handleInputs(index, e.target.value)}
                 defaultValue=""
                 sx={{
                   width: "33px",
