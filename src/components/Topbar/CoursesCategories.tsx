@@ -46,7 +46,7 @@ export default function CoursesCategories() {
         <div key={item.id}>
           <TypoMenu
             key={item.id}
-            onMouseEnter={(event: any) => handleOpenMenu(item.id, event)}
+            onMouseOver={(event: any) => handleOpenMenu(item.id, event)}
             aria-controls="basic-menu"
             aria-haspopup="true"
             aria-expanded={openMenus[item.id] ? "true" : undefined}>
@@ -57,17 +57,20 @@ export default function CoursesCategories() {
             <Menu
               sx={{
                 ".MuiMenu-paper": {
-                  width: "170px",
-                  height: "400px",
+                  width: "200px",
+                  // height: "400px",
                   display: "flex",
                   justifyContent: "end",
                   marginTop: "7px",
+                  borderRadius: "10px",
                 },
                 ".MuiMenu-list": {
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "space-between",
+                  justifyContent: "start",
+                  gap: "10px",
                   alignItems: "end",
+                  width: "100%",
                 },
                 ".MuiMenuItem-root": {
                   backgroundColor: "transparent",
@@ -78,10 +81,10 @@ export default function CoursesCategories() {
                   color: "#33A765",
                 },
               }}
+              MenuListProps={{ onMouseLeave: closehandler }}
               id={`basic-menu${item.id}`}
               open={openMenus[item.id]}
               anchorEl={anchorEl}
-              onMouseOutCapture={closehandler}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "center",
@@ -91,7 +94,17 @@ export default function CoursesCategories() {
                 horizontal: "center",
               }}>
               {item.courses.map((course: any) => (
-                <MenuItem key={course.id}>{course.titleFa}</MenuItem>
+                <MenuItem
+                  key={course.id}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "start",
+                    direction: "rtl",
+                  }}>
+                  {course.titleFa}
+                </MenuItem>
               ))}
             </Menu>
           )}

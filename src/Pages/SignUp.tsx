@@ -127,7 +127,6 @@ export default function LogInEmail() {
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    // alignItems: "center",
   };
 
   const f_row_box = {

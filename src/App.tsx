@@ -7,7 +7,7 @@ import Home from "./Pages/Home/Home";
 import LogInEmail from "./Pages/LogInEmail";
 import Roles from "./Pages/Roles";
 import SignUp from "./Pages/SignUp";
-import InfoUser from "./Pages/InfoUser";
+import InfoUser from "./Pages/InfoUser/InfoUser";
 import DetailCourse from "./Pages/DetailCourse/DetaiCourse";
 import ConfirmCode from "./Pages/ConfirmCode/ConfirmCode";
 import Orders from "./Pages/oreders/Orders";
@@ -26,7 +26,6 @@ export default function App() {
         <Route path="/confirmcode" element={<ConfirmCode />} />
         <Route path="/orders" element={<Orders />} />
       </Routes>
-      {/* <Orders /> */}
     </Box>
   );
 }

@@ -6,6 +6,7 @@ const Products = [
     title: "آموزش بوتسرپ - جدیدترین نسخه",
     describtion: "خوش آمدید به بهترین آموزش بوت استرپ ورژن 5 در ایران ",
     src: "image/bootstrap.jpg",
+    price: "450.000 هزار تومان",
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ const Products = [
     title: "هوش مصنوعی در برنامه نویسی",
     describtion: "هوش مصنوعی یک حوزه از علوم کامپیوتر است که به طراحی و  ",
     src: "image/gpt.png",
+    price: "850.000 هزار تومان",
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ const Products = [
     title: "آموزش نود جی اس بدون پیش نیاز",
     describtion: "نود جی اس بازدهی و انعطاف بالایی دارد. کراس پلتفرم است",
     src: "image/nodejs.jpg",
+    price: "3.150.000 هزار تومان",
   },
   {
     id: 4,
@@ -31,6 +34,7 @@ const Products = [
     describtion:
       "پایتون یک زبان برنامه نویسی عمومی و Open Source است که می تواند",
     src: "image/phyton.png",
+    price: "150.000 هزار تومان",
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ const Products = [
     describtion:
       "..تکنولوژِی تقریبا جدیده که میتونیم بهمون اجازه میده وب‌سایتی که ",
     src: "image/PWA.jpg",
+    price: "1.100.000 هزار تومان",
   },
   {
     id: 6,
@@ -48,6 +53,7 @@ const Products = [
     title: "اموزش تکست  پروژه محور",
     describtion: "نکست یه فریمورک مبتنی بر ری‌اکت هست که امروزه تو بازار",
     src: "image/sabz.png",
+    price: "4.000.000 هزار تومان",
   },
 ];
 
