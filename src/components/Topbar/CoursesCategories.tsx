@@ -41,7 +41,7 @@ export default function CoursesCategories() {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", width: "70%" }}>
       {courseCategories.map((item: any) => (
         <div key={item.id}>
           <TypoMenu
@@ -58,7 +58,6 @@ export default function CoursesCategories() {
               sx={{
                 ".MuiMenu-paper": {
                   width: "200px",
-                  // height: "400px",
                   display: "flex",
                   justifyContent: "end",
                   marginTop: "7px",

@@ -5,7 +5,7 @@ import Topbar from "../../components/Topbar/Topbar";
 import Section_Content from "../../components/Section_content/Section_Content";
 import Section_Head from "../../components/section-head/Section_Head";
 import Slider_Content from "../../components/slider-content/Slider_Content";
-import { Box, Stack, ThemeProvider, createTheme } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import Footer from "../../components/footer/Footer";
 export default function Home() {
   return (

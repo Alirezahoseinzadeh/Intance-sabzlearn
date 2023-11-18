@@ -1,14 +1,22 @@
-import { Button } from "@mui/material";
+import { Button, useMediaQuery } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 
 export default function LoginOrSignInButton() {
+  const isSmallScreen = useMediaQuery("(max-width:500px)");
+  const isMediumScreen = useMediaQuery(
+    "(min-width:501px) and (max-width:980px)"
+  );
   return (
     <>
       <Button
         sx={{
           backgroundColor: "#015366",
-          padding: "7px 20px",
+          padding: isSmallScreen
+            ? "3px 11px"
+            : isMediumScreen
+            ? "4px 14px"
+            : "7px 20px",
           fontWeight: 700,
           borderRadius: "25px",
           zIndex: 999,
@@ -31,7 +39,11 @@ export default function LoginOrSignInButton() {
       <Button
         sx={{
           backgroundColor: "#0ecfff",
-          padding: "7px 23px",
+          padding: isSmallScreen
+            ? "3px 11px"
+            : isMediumScreen
+            ? "4px 14px"
+            : "7px 20px",
           fontWeight: 700,
           borderRadius: "0 20px 20px 0",
           position: "relative",

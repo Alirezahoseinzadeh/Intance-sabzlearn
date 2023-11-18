@@ -49,7 +49,7 @@ export default function Section_Content() {
                   }}>
                   <Link
                     // onClick={() => getCoursesInfo(item)}
-                    to={`/${item.id}`}
+                    to={`detailcourse/${item.id}`}
                     style={{
                       textDecoration: "none",
                       color: "black",

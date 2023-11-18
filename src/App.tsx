@@ -17,7 +17,7 @@ export default function App() {
     <Box>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:id" element={<DetailCourse />} />
+        <Route path="/detailcourse/:id" element={<DetailCourse />} />
         <Route path="/login/*" element={<Login />}></Route>
         <Route path="/loginemail" element={<LogInEmail />} />
         <Route path="role" element={<Roles />} />

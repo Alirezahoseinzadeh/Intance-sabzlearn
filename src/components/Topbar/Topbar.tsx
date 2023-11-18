@@ -7,6 +7,7 @@ import {
   Drawer,
   TextField,
   Modal,
+  useMediaQuery,
 } from "@mui/material";
 import React, { useState } from "react";
 import ModeNightOutlinedIcon from "@mui/icons-material/ModeNightOutlined";
@@ -25,6 +26,10 @@ import LoginOrSignInButton from "./LoginOrSignInButton";
 import DrawerComponent from "./DrawerComponent";
 import { Link } from "react-router-dom";
 export default function Topbar() {
+  const isSmallScreen = useMediaQuery("(max-width:600px)");
+  const isMediumScreen = useMediaQuery(
+    "(min-width:601px) and (max-width:900px)"
+  );
   const products = useSelector((state: any) => state.products);
 
   const [openDrwer, setOpendrawer] = useState(false);
@@ -69,8 +74,11 @@ export default function Topbar() {
           <Box sx={{ height: "80px", display: "flex", alignItems: "center" }}>
             <Stack
               direction="row"
-              spacing={3}
-              sx={{ display: "flex", alignItems: "center" }}>
+              spacing={{ xs: 1, sm: 2, md: 3 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+              }}>
               <Box>
                 {isLogin ? (
                   <>
@@ -88,17 +96,25 @@ export default function Topbar() {
                   </>
                 )}
               </Box>
-              <IconButton aria-label="delete">
+              {/* <IconButton aria-label="delete">
                 <ModeNightOutlinedIcon
                   sx={{
-                    fontSize: "35px",
+                    fontSize: isSmallScreen
+                      ? "26px"
+                      : isMediumScreen
+                      ? "30px"
+                      : "35px",
                   }}
                 />
-              </IconButton>
+              </IconButton> */}
               <IconButton aria-label="delete" onClick={dialoghandler}>
                 <SearchOutlinedIcon
                   sx={{
-                    fontSize: "35px",
+                    fontSize: isSmallScreen
+                      ? "26px"
+                      : isMediumScreen
+                      ? "30px"
+                      : "35px",
                   }}
                 />
               </IconButton>
@@ -115,7 +131,11 @@ export default function Topbar() {
                   }}>
                   <ShoppingBagIcon
                     sx={{
-                      fontSize: "35px",
+                      fontSize: isSmallScreen
+                        ? "26px"
+                        : isMediumScreen
+                        ? "30px"
+                        : "35px",
                       color: "#61615a",
                     }}
                   />

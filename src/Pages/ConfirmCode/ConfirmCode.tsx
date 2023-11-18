@@ -3,18 +3,24 @@ import {
   Container,
   Stack,
   Typography,
-  TextField,
   Input,
-  styled,
   Button,
   Snackbar,
 } from "@mui/material";
-
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import { OtpLogin } from "../../api/ApiService";
-import { PhoenRegex } from "../../components/RegexHelper";
+import {
+  btnstyle,
+  ContainerBox,
+  StyleForLogo,
+  styleFormainContentStack,
+  StyleForIconToback,
+  StleForcodetaeedText,
+  StyleForConatinerInpute,
+  StyleForEveryInpute,
+} from "./ConfirmCode.Style";
 
 export default function ConfirmCode() {
   const [openSnackBar, setOpenSnakBar] = useState<boolean>(false);
@@ -24,7 +30,6 @@ export default function ConfirmCode() {
 
   useEffect(() => {
     setOpenSnakBar(true);
-
     if (localStorage.getItem("phonenumber")) {
       setPhoneNumber(localStorage.getItem("phonenumber"));
     } else {
@@ -32,17 +37,11 @@ export default function ConfirmCode() {
     }
   }, []);
 
-  // const handleInputs = (index: any, value: any) => {
-  //   const newOtpValues = [...otpValues];
-  //   newOtpValues[index] = value;
-  //   setOtpValues(newOtpValues);
-  // };
   const handleInputs = (index: any, value: any) => {
     if (value.length === 1 && index < otpValues.length) {
       setOtpValues((prevOtpValues) => {
         const newOtpValues = [...prevOtpValues];
         newOtpValues[index] = value;
-
         // Move focus to the next input
         if (index < otpValues.length - 1) {
           const nextInput = document.getElementById(`otp-input-${index + 1}`);
@@ -55,6 +54,19 @@ export default function ConfirmCode() {
     }
   };
 
+  const handlekey = (index: any, keyword: any) => {
+    if (keyword == "Backspace") {
+      if (index < otpValues.length) {
+        const newotpValue = [...otpValues];
+        newotpValue[index] = "";
+        setOtpValues(newotpValue);
+        const prevInput = document.getElementById(`otp-input-${index - 1}`);
+        if (prevInput) {
+          prevInput.focus();
+        }
+      }
+    }
+  };
   // submit value to api
 
   const submitHandler = async () => {
@@ -84,39 +96,11 @@ export default function ConfirmCode() {
     setOpenSnakBar(false);
   };
 
-  const btnstyle = {
-    width: "80%",
-    color: "white",
-    backgroundColor: "#4dcc30",
-    borderRadius: "10px",
-    fontSize: "15px",
-    fontWeight: "600",
-    letterSpacing: 2,
-    opacity: "0.9",
-    "&:hover": {
-      color: "white",
-      backgroundColor: "#4dcc30",
-      opacity: "1",
-    },
-  };
-  const main_box = {
-    backgroundColor: "#edefe9",
-    width: "100%",
-    height: "100vh",
-    display: "flex",
-    justifyContent: "center",
-  };
-  const f_row_box = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    columnGap: "10px",
-  };
   return (
-    <Box component="div" sx={main_box}>
+    <Box component="div" sx={ContainerBox}>
       <Container maxWidth="xs" sx={{ height: "400px", marginTop: "30px" }}>
         <Stack spacing={4}>
-          <Box sx={f_row_box}>
+          <Box sx={StyleForLogo}>
             <Box>
               <Typography sx={{ fontSize: "37px", fontWeight: "800" }}>
                 سبزلرن
@@ -137,47 +121,10 @@ export default function ConfirmCode() {
             />
           </Box>
         </Stack>
-        <Stack
-          sx={{
-            backgroundColor: "white",
-            marginTop: "30px",
-            borderRadius: "10px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative",
-          }}
-          spacing={4}>
-          <ReplyOutlinedIcon
-            sx={{
-              position: "absolute",
-              top: "10px",
-              left: "15px",
-              cursor: "poite",
-              "&:hover": {
-                color: "#c00000",
-              },
-            }}
-          />
-          <Typography
-            sx={{
-              textAlign: "center",
-              paddingTop: "20px",
-              fontSize: "20px",
-              fontWeight: "700",
-              letterSpacing: "2px",
-            }}>
-            کد تایید
-          </Typography>
-          <Box
-            sx={{
-              display: "flex",
-              columnGap: "10px",
-              alignItems: "Center",
-              justifyContent: "center",
-              gap: "15px",
-              marginTop: "30px",
-            }}>
+        <Stack sx={styleFormainContentStack} spacing={4}>
+          <ReplyOutlinedIcon sx={StyleForIconToback} />
+          <Typography sx={StleForcodetaeedText}>کد تایید</Typography>
+          <Box sx={StyleForConatinerInpute}>
             {otpValues.map((value, index) => (
               <Input
                 value={value}
@@ -185,16 +132,8 @@ export default function ConfirmCode() {
                 id={`otp-input-${index}`}
                 onChange={(e: any) => handleInputs(index, e.target.value)}
                 defaultValue=""
-                sx={{
-                  width: "33px",
-                  textAlign: "center",
-                  background: "#edefe9",
-                  borderRadius: "4px",
-                  borderTop: "1px solid blue",
-                  ".MuiInput-input": {
-                    textAlign: "center",
-                  },
-                }}
+                sx={StyleForEveryInpute}
+                onKeyDown={(e: any) => handlekey(index, e.key)}
               />
             ))}
           </Box>
